@@ -1,0 +1,3 @@
+axis=0 pomeni → operacija poteka po vrsticah (navpično, dol stolpcev)
+axis=1 pomeni → operacija poteka po stolpcih (vodoravno, skozi vrstice)
+
