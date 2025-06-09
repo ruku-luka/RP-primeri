@@ -3,7 +3,7 @@ SLOVARJI:
 | -------- | --------------- | ------------------------------------------------------------- | -------------------------------- | ------------------ |
 | `append` | seznam (`list`) | Doda **en sam element** na konec seznama                      | `[1, 2].append([3, 4])`          | `[1, 2, [3, 4]]`   |
 | `extend` | seznam (`list`) | Doda **vse elemente** iz iterable (npr. seznama) posamično    | `[1, 2].extend([3, 4])`          | `[1, 2, 3, 4]`     |
-| `update` | slovar (`dict`) | Doda ali posodobi **ključ-vrednost pare** iz drugega slovarja | `{'a':1}.update({'b':2, 'a':3})` | `{'a': 3, 'b': 2}` |
+| `update` | slovar (`dict`) | Doda ali posodobi **ključ-vrednost pare** iz drugega slovarja | `{'a':1}.update({'b':2, 'a':3})` | `{'a': 3, 'b': 2}` | - obstoječe vrednosti prepiše se z novo vrednostjo
 
 
 | Metoda     | Vrne                           | Tip podatka                       | Primer       | Rezultat                            |
@@ -19,11 +19,16 @@ SLOVARJI:
 | `join()` | niz (`str`)     | Združi elemente iz seznama (ali druge iterable strukture) v **en niz** | `' - '.join(['a', 'b', 'c'])` | `'a - b - c'`                                     |
 
 
+slovar[nov_kljuc] = nova_vrednost
 slovar.get(ključ, privzeta_vrednost)
 foe x,y in slovar.items(): (lahkovzamemo kot par)
 
+Zapisovanje spremenljive vrednosti za ključ: slovar[f"dan {i + 1}"] = s
 
-SEZNAMI IN OSTALO:
+
+
+
+SEZNAMI, NIZI IN OSTALO:
 | Funkcija   | Tip               | Spreminja original? | Vrne nov seznam? | Velja za                                          |
 | ---------- | ----------------- | ------------------- | ---------------- | ------------------------------------------------- |
 | `sort()`   | metoda            | ✅ Da                | ❌ Ne (`None`)    | samo za sezname (`list`)                          |
@@ -39,6 +44,8 @@ sorted() – funkcija, ki vrne nov seznam
 -Deluje na vseh iterabilnih strukturah: seznami, nizi, tuple-ji, celo množice (čeprav rezultat vedno postane seznam)
 
 
+
+
 | Funkcija      | Kaj naredi                                          | Tip rezultata | Primer            | Rezultat |
 | ------------- | --------------------------------------------------- | ------------- | ----------------- | -------- |
 | `round(x, 2)` | Zaokroži število na 2 decimalni mesti (matematično) | `float`       | `round(3.456, 2)` | `3.46`   |
@@ -46,6 +53,19 @@ sorted() – funkcija, ki vrne nov seznam
 
 
 zaporedje[start: stop: korak] sintaksa za rezanje (slicing), ki omogoča, da iz zaporedja (kot so nizi, seznami, tuple-ji) izbereš del podzaporedja
+
+
+Split, strip, join:
+| Metoda       | Namen                                                                | Primer uporabe       | Rezultat          |
+| ------------ | -------------------------------------------------------------------- | -------------------- | ----------------- |
+| `strip()`    | Odstrani bele znake (presledke, `\n`, `\t`) na začetku in koncu niza | `"  abc \n".strip()` | `"abc"`           |
+| `split(sep)` | Razdeli niz na seznam podnizov, ločenih z `sep` (privzeto presledek) | `"a,b,c".split(',')` | `['a', 'b', 'c']` |
+
+vrednosti = vrstica.strip().split(',')
+
+| Metoda                     | Kaj naredi                                                   | Primer                        | Rezultat       |
+| -------------------------- | ------------------------------------------------------------ | ----------------------------- | -------------- |
+| `'delimiter'.join(seznam)` | Združi vse elemente seznama v en niz, ločene z `'delimiter'` | `", ".join(['Ana', 'Bojan'])` | `'Ana, Bojan'` |
 
 
 
@@ -58,10 +78,58 @@ OBLIKOVNO:
 | `upper()`         | niz (`str`)     | Pretvori vse črke v velike                                        | `'Hello'.upper()`            | `'HELLO'`                                          |
 | `replace()`       | niz (`str`)     | Zamenja vse pojave enega podniza z drugim                         | `'Ana'.replace('A', 'O')`    | `'Ona'`                                            |
 | `pop()`           | seznam (`list`) | Odstrani in vrne element z določenega indeksa (privzeto zadnjega) | `lst.pop()` ali `lst.pop(1)` | Odstrani element in ga vrne, seznam pa se spremeni |
+Kako deluje pop():
+-Pri seznamih: pop(index) odstrani element na položaju index in ga vrne.
+-Pri slovarjih: pop(key) odstrani par s ključem key in vrne pripadajočo vrednost.
+
+
+| Funkcija / Metoda | Kaj počne                                                                    | Primer uporabe         | Rezultat |
+| ----------------- | ---------------------------------------------------------------------------- | ---------------------- | -------- |
+| `isupper()`       | Preveri, če so **vse črke** v nizu **velike**                                | `'ABC'.isupper()`      | `True`   |
+| `islower()`       | Preveri, če so **vse črke** v nizu **male**                                  | `'abc'.islower()`      | `True`   |
+| `index()`         | Poišče prvi indeks pojavitve podniza v nizu; če ni, vrže napako `ValueError` | `'banana'.index('na')` | `2`      |
+| `isnumeric()` | Preveri, ali vsi znaki v nizu predstavljajo številke (0-9 in druge številke)     | `"12345".isnumeric()`  | `True`   |
+
+
+| Funkcija | Namen                       | Primer uporabe   | Rezultat |
+| -------- | --------------------------- | ---------------- | -------- |
+| `min()`  | Vrne **najmanjšo vrednost** | `min([3, 1, 4])` | `1`      |
+| `max()`  | Vrne **največjo vrednost**  | `max([3, 1, 4])` | `4`      |
+
+
+| Metoda     | Uporablja se pri | Kaj naredi                              | Primer          | Rezultat                            |
+| ---------- | ---------------- | --------------------------------------- | --------------- | ----------------------------------- |
+| `append()` | seznam (`list`)  | Doda **element na konec seznama**       | `lst.append(5)` | `[1, 2, 5]`                         |
+| `add()`    | množica (`set`)  | Doda **nov unikatni element** v množico | `s.add(5)`      | `{1, 2, 5}` (če 5 še ni bilo notri) |
+
+
+| Kaj počne map()                                                                   | Primer uporabe                    | Rezultat                            |
+| --------------------------------------------------------------------------------- | --------------------------------- | ----------------------------------- |
+| Uporabi funkcijo na vsak element iterabilnega objekta in vrne iterator rezultatov | `map(str.upper, ['a', 'b', 'c'])` | iterator, ki daje `['A', 'B', 'C']` |
+
+
+| Kaj predstavlja set()                 | Primer uporabe      | Rezultat    |
+| ------------------------------------- | ------------------- | ----------- |
+| Neurejeno množico unikatnih elementov | `set([1, 2, 2, 3])` | `{1, 2, 3}` |
 
 
 for indeks, vrednost in enumerate(seznam): (imamo indeks/pozicijo in vrednost tega)
     print(indeks, vrednost)
+
+
+KORISTNE KODE:
+Datumi:
+def kateri_dan_v_tednu(m, dt, datum, prvi_dan=0):
+    dolzina_leta = sum(m)
+    zamik_na_leto = dolzina_leta % dt # ostanek pove kolikšen je zamik
+    zacetek_leta = prvi_dan + (datum[2] * zamik_na_leto) % dt
+    dan_v_tednu = zacetek_leta + sum(m[:datum[1]]) + datum[0]
+    return dan_v_tednu % dt
+
+Dobivanje številk iz ure:
+def ure(prihod, odhod):
+    h1, m1, s1 = map(int, prihod.split(':'))
+    h2, m2, s2 = map(int, odhod.split(':'))
 
 
 
