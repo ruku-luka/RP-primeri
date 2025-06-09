@@ -53,6 +53,8 @@ sorted() – funkcija, ki vrne nov seznam
 
 
 zaporedje[start: stop: korak] sintaksa za rezanje (slicing), ki omogoča, da iz zaporedja (kot so nizi, seznami, tuple-ji) izbereš del podzaporedja
+obrnjen = niz[::-1] - to pomeni: začni od konca (-1 pomeni korak nazaj), brez omejitev začetka in konca → torej obrnjen niz
+
 
 
 Split, strip, join:
