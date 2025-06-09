@@ -1,3 +1,44 @@
 axis=0 pomeni → operacija poteka po vrsticah (navpično, dol stolpcev)
 axis=1 pomeni → operacija poteka po stolpcih (vodoravno, skozi vrstice)
 
+
+| Funkcija / Metoda  | Namen                                            | Primer uporabe                    | Opis rezultata              |
+| ------------------ | ------------------------------------------------ | --------------------------------- | --------------------------- |
+| `np.sum()`         | Sešteje vse elemente v arrayu                    | `np.sum([1,2,3])`                 | `6`                         |
+| `np.cumsum()`      | Izračuna kumulativni seštevek                    | `np.cumsum([1,2,3])`              | `[1, 3, 6]`                 |
+| `np.mean()`        | Izračuna povprečje elementov                     | `np.mean([1,2,3])`                | `2.0`                       |
+| `np.median()`      | Izračuna mediano                                 | `np.median([1,3,2])`              | `2.0`                       |
+| `np.std()`         | Standardni odklon                                | `np.std([1,2,3])`                 | Približno `0.816`           |
+| `np.min()`         | Najmanjši element                                | `np.min([5,2,8])`                 | `2`                         |
+| `np.max()`         | Največji element                                 | `np.max([5,2,8])`                 | `8`                         |
+| `np.argmax()`      | Indeks največjega elementa                       | `np.argmax([1,5,2])`              | `1`                         |
+| `np.argmin()`      | Indeks najmanjšega elementa                      | `np.argmin([1,5,2])`              | `0`                         |
+| `np.reshape()`     | Preoblikuje array v drugo obliko                 | `np.reshape(np.arange(6), (2,3))` | Array 2x3                   |
+| `np.zeros()`       | Ustvari array napolnjen z ničlami                | `np.zeros((2,2))`                 | 2x2 matrika z 0             |
+| `np.ones()`        | Ustvari array napolnjen z enicami                | `np.ones((3,))`                   | `[1., 1., 1.]`              |
+| `np.linspace()`    | Ustvari enakomerno porazdeljene vrednosti        | `np.linspace(0,1,5)`              | `[0., 0.25, 0.5, 0.75, 1.]` |
+| `np.random.rand()` | Ustvari array z naključnimi vrednostmi od 0 do 1 | `np.random.rand(3)`               | Npr. `[0.2, 0.9, 0.5]`      |
+
+
+| Funkcija / Metoda | Namen                            | Primer uporabe                   | Rezultat                       |
+| ----------------- | -------------------------------- | -------------------------------- | ------------------------------ |
+| `.T`              | Transponira NumPy array          | `a = np.array([[1, 2], [3, 4]])` | `a.T` vrne: `[[1, 3], [2, 4]]` |
+| `np.transpose()`  | Transponira array (več dimenzij) | `np.transpose(a)`                | Enak rezultat kot `a.T`        |
+
+
+| Funkcija           | Namen                                                                           | Primer uporabe                | Rezultat          |
+| ------------------ | ------------------------------------------------------------------------------- | ----------------------------- | ----------------- |
+| `np.roll()`        | Premakne (zavrti) elemente v arrayu za določeno število mest vzdolž izbrane osi | `np.roll([1,2,3,4,5], 2)`     | `[4, 5, 1, 2, 3]` |
+| `np.flatnonzero()` | Vrne indekse vseh elementov v arrayu, ki niso ničelni (True) kot 1D polje       | `np.flatnonzero([0,2,0,3,4])` | `[1, 3, 4]`       |
+
+
+ZANIMIVE KODE:
+Korona bus:
+import numpy as np
+def koliko_mimo(arr, i):
+    if not arr[i]: # preverimo ali je sedež prost - torej False
+        return np.sum(arr[:i]) + (len(arr) - i - 1 - np.sum(arr[i + 1:])) # zamimajo nas False sedeži za nami
+                                # len(arr) - i - 1 → število vseh sedežev za tabo; np.sum(arr[i+1:]) → kolikšnih od teh je že zasedenih 
+                                # torej: koliko jih bo še zasedenih v prihodnosti, če se avtobus popolnoma napolni
+    else:
+        return -1
