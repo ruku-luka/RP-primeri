@@ -1,0 +1,67 @@
+SLOVARJI:
+| Metoda   | Velja za        | Kaj naredi                                                    | Primer                           | Rezultat           |
+| -------- | --------------- | ------------------------------------------------------------- | -------------------------------- | ------------------ |
+| `append` | seznam (`list`) | Doda **en sam element** na konec seznama                      | `[1, 2].append([3, 4])`          | `[1, 2, [3, 4]]`   |
+| `extend` | seznam (`list`) | Doda **vse elemente** iz iterable (npr. seznama) posamično    | `[1, 2].extend([3, 4])`          | `[1, 2, 3, 4]`     |
+| `update` | slovar (`dict`) | Doda ali posodobi **ključ-vrednost pare** iz drugega slovarja | `{'a':1}.update({'b':2, 'a':3})` | `{'a': 3, 'b': 2}` |
+
+
+| Metoda     | Vrne                           | Tip podatka                       | Primer       | Rezultat                            |
+| ---------- | ------------------------------ | --------------------------------- | ------------ | ----------------------------------- |
+| `keys()`   | Vse **ključe**                 | `dict_keys` (iterable)            | `d.keys()`   | `['ime', 'starost']`                |
+| `values()` | Vse **vrednosti**              | `dict_values` (iterable)          | `d.values()` | `['Ana', 25]`                       |
+| `items()`  | Vse **(ključ, vrednost)** pare | `dict_items` (iterable of tuples) | `d.items()`  | `[('ime', 'Ana'), ('starost', 25)]` |
+
+
+| Funkcija | Velja za        | Kaj naredi                                                             | Primer                        | Rezultat                                          |
+| -------- | --------------- | ---------------------------------------------------------------------- | ----------------------------- | ------------------------------------------------- |
+| `get()`  | slovar (`dict`) | Varn način za **pridobivanje vrednosti po ključu**                     | `d.get('ime', 'ni podatka')`  | Če ključ obstaja: vrednost, sicer: `'ni podatka'` |
+| `join()` | niz (`str`)     | Združi elemente iz seznama (ali druge iterable strukture) v **en niz** | `' - '.join(['a', 'b', 'c'])` | `'a - b - c'`                                     |
+
+
+slovar.get(ključ, privzeta_vrednost)
+foe x,y in slovar.items(): (lahkovzamemo kot par)
+
+
+SEZNAMI IN OSTALO:
+| Funkcija   | Tip               | Spreminja original? | Vrne nov seznam? | Velja za                                          |
+| ---------- | ----------------- | ------------------- | ---------------- | ------------------------------------------------- |
+| `sort()`   | metoda            | ✅ Da                | ❌ Ne (`None`)    | samo za sezname (`list`)                          |
+| `sorted()` | vgrajena funkcija | ❌ Ne                | ✅ Da             | za **vse iterabilne** (seznami, nizi, tuple, ...) |
+
+sort() – metoda seznama, sortira na mestu
+-Spremeni originalni seznam
+-Vrne None
+-Samo za list objekte
+
+sorted() – funkcija, ki vrne nov seznam
+-Ne spremeni originala
+-Deluje na vseh iterabilnih strukturah: seznami, nizi, tuple-ji, celo množice (čeprav rezultat vedno postane seznam)
+
+
+| Funkcija      | Kaj naredi                                          | Tip rezultata | Primer            | Rezultat |
+| ------------- | --------------------------------------------------- | ------------- | ----------------- | -------- |
+| `round(x, 2)` | Zaokroži število na 2 decimalni mesti (matematično) | `float`       | `round(3.456, 2)` | `3.46`   |
+| `f"{x:.2f}"`  | Formatira število na 2 decimalni mesti za izpis     | `str`         | `f"{3.456:.2f}"`  | `'3.46'` | (lep prikaz z decimalno vejico)
+
+
+zaporedje[start: stop: korak] sintaksa za rezanje (slicing), ki omogoča, da iz zaporedja (kot so nizi, seznami, tuple-ji) izbereš del podzaporedja
+
+
+
+OBLIKOVNO:
+| Funkcija / Metoda | Velja za        | Kaj naredi                                                        | Primer                       | Rezultat                                           |
+| ----------------- | --------------- | ----------------------------------------------------------------- | ---------------------------- | -------------------------------------------------- |
+| `append()`        | seznam (`list`) | Doda element na konec seznama                                     | `lst.append(5)`              | Če je `lst=[1,2]`, potem `lst` postane `[1,2,5]`   |
+| `count()`         | seznam, niz     | Šteje, kolikokrat se element pojavi                               | `'banana'.count('a')`        | `3`                                                |
+| `lower()`         | niz (`str`)     | Pretvori vse črke v male                                          | `'Hello'.lower()`            | `'hello'`                                          |
+| `upper()`         | niz (`str`)     | Pretvori vse črke v velike                                        | `'Hello'.upper()`            | `'HELLO'`                                          |
+| `replace()`       | niz (`str`)     | Zamenja vse pojave enega podniza z drugim                         | `'Ana'.replace('A', 'O')`    | `'Ona'`                                            |
+| `pop()`           | seznam (`list`) | Odstrani in vrne element z določenega indeksa (privzeto zadnjega) | `lst.pop()` ali `lst.pop(1)` | Odstrani element in ga vrne, seznam pa se spremeni |
+
+
+for indeks, vrednost in enumerate(seznam): (imamo indeks/pozicijo in vrednost tega)
+    print(indeks, vrednost)
+
+
+
