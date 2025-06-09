@@ -1,0 +1,40 @@
+| Metoda        | Kaj naredi                                     | Vrsta rezultata     | Primer uporabe    |
+| ------------- | ---------------------------------------------- | ------------------- | ----------------- |
+| `readline()`  | Prebere **eno vrstico** iz datoteke            | `str` (ena vrstica) | `dat.readline()`  | - 	Ko bereš datoteko vrstico za vrstico (npr. v zanki) – bolj učinkovito za velike datoteke
+| `readlines()` | Prebere **vse vrstice** in jih vrne kot seznam | `list[str]`         | `dat.readlines()` | - 	Ko želiš vse vrstice naenkrat (npr. za obdelavo v spominu)
+
+
+ODPIRAVJE, BRANJE:
+def linije(ime_vhodne):
+    with open(ime_vhodne, 'r', encoding='utf-8') as dat:
+        vrstice = dat.readlines()
+    slo = {}
+    for vrstica in vrstice:
+        vrstica = vrstica.strip()
+        if vrstica[0].isnumeric(): # if vrstica[0] in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']: 
+            linija = vrstica
+            slo[linija] = []
+        else:
+            slo[linija].append(vrstica)
+    return slo
+
+
+
+ODPIRANJE, PISANJE:
+def pregledno(slo, ime_izhoda):
+    with open(ime_izhoda, 'w', encoding='utf-8') as dat:
+        for (linija, postaje) in slo.items():
+            dat.write(linija + ': ')        # dat.write(f'{linija}: ')
+            for postaja in postaje[:-1]:
+                dat.write(postaja + ' -> ') # dat.write(f'{postaja} -> ')
+            dat.write(postaje[-1] + '\n')   # dat.write(f'{postaje[-1]}\n')
+
+
+
+| Lastnost                        | `print()`                                                                  | `write()`                                      |
+| ------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------- |
+| Namen                           | Izpis v konzolo ali v datoteko (če uporabimo `file=...`)                   | Zapis neposredno v datoteko kot niz            |
+| Privzeto dodajanje nove vrstice | `print()` samodejno na konec doda znak za novo vrstico (`\n`)              | `write()` ne dodaja nobenih dodatnih znakov    |
+| Formatiranje                    | Podpira več argumentov, avtomatsko pretvarjanje v niz, ločitev z presledki | Samo zapiše točno, kar mu damo (mora biti niz) |
+| Uporaba                         | `print("tekst", file=datoteka)`                                            | `datoteka.write("tekst")`                      |
+| Kontrola nad izpisom            | Manj nadzora nad natančnim formatom                                        | Več nadzora, ker pišeš natančno, kar želiš     |
