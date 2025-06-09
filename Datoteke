@@ -18,6 +18,14 @@ def linije(ime_vhodne):
             slo[linija].append(vrstica)
     return slo
 
+def temperature(vhodna): 
+    niz = []   
+    with open(vhodna, 'r') as doc:
+        for vrstica in doc.readlines(): # readline - ena vrstica; readlines() - več jih prebere
+            novo = vrstica.split(' ') 
+            if novo[0] == 'WX-T':
+                niz.append(float(novo[1])) # floar se zneli ''
+    return niz
 
 
 ODPIRANJE, PISANJE:
