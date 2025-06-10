@@ -133,5 +133,8 @@ def ure(prihod, odhod):
     h1, m1, s1 = map(int, prihod.split(':'))
     h2, m2, s2 = map(int, odhod.split(':'))
 
-
+Primer stikala:
+stikalo = False
+# uporabnik pritisne gumb ali neka logika se spremeni
+stikalo = not stikalo  # preklop: False -> True ali True -> False
 
