@@ -1,1 +1,2323 @@
+UVOD V PYTHON:
+# Osnovno o funkcijah
+# =====================================================================@022145=
+# 1. podnaloga
+# Definirajte funkcijo z imenom `funkcija`, ki ne sprejme argumentov in vrne
+# poljubno celo število (`int`).
+# =============================================================================
+def funkcija ():
+    return 24
+# =====================================================================@022146=
+# 2. podnaloga
+# Definirajte funkcijo z imenom `odmev`, ki sprejme en argument in ga vrne.
+# =============================================================================
+def odmev (uwu):
+    return uwu
+# =====================================================================@022147=
+# 3. podnaloga
+# Definirajte funkcijo z imenom `sestevek`, ki sprejme dva argumenta in vrne
+# njuno vsoto.
+# =============================================================================
+def sestevek (a , b):
+    return a + b
+# =====================================================================@022148=
+# 4. podnaloga
+# Definirajte funkcijo z imenom `deljenje`, ki sprejme dve celi števili in vrne
+# vrne dve vrednosti. Na prvem mestu vrne celoštevilski rezultat deljenja,
+# na drugem pa ostanek pri deljenju. Zagotovljeno je, da druga vrednost ne bo `0`. 
+# 
+# Za vračanje več kot ene vrednosti po besedi `return` podate vrednosti ločene
+# z vejico.
+# =============================================================================
+def deljenje ( a , b):
+    return (a//b, a%b )
+
+# Logične operacije
+#
+# Logični operator *konjunkcija* ima naslednjo resničnostno tabelo, kjer
+# `F` predstavlja neresnično (`False`), `T` pa resnično (`True`) vrednost:
+# 
+#     A  B | A /\ B
+#     -----+-------
+#     F  F |   F
+#     F  T |   F
+#     T  F |   F
+#     T  T |   T
+# 
+# S pomočjo vgrajenega operatorja `and` enostavno sestavimo funkcijo
+# `konjunkcija(a, b)`, ki sprejme logični vrednosti `a` in `b` ter vrne logično
+# vrednost konjunkcije `a /\ b`:
+# 
+#     def konjunkcija(a, b):
+#         return a and b
+# =====================================================================@021412=
+# 1. podnaloga
+# Logični operator *disjunkcija* ima naslednjo resničnostno tabelo:
+# 
+#     A  B | A \/ B
+#     -----+-------
+#     F  F |   F
+#     F  T |   T
+#     T  F |   T
+#     T  T |   T
+# 
+# Sestavite funkcijo `disjunkcija(a, b)`, ki sprejme logični vrednosti
+# `a` in `b` ter vrne logično vrednost disjunkcije `a \/ b`. Pri tem si
+# pomagajte z vgrajenim operatorjem `or`.
+# =============================================================================
+def disjunkcija(a, b):
+    return a or b
+# =====================================================================@021413=
+# 2. podnaloga
+# Logični operator *negacija* ima naslednjo resničnostno tabelo:
+# 
+#     A | ~A
+#     --+----
+#     F | T
+#     T | F
+# 
+# Sestavite funkcijo `negacija(a)`, ki vrne logično vrednost negacije `~a`.
+# =============================================================================
+def negacija (a):
+    return not a
+# =====================================================================@021414=
+# 3. podnaloga
+# Logični operator *implikacija* ima naslednjo resničnostno tabelo:
+# 
+#     A  B | A => B
+#     -----+-------
+#     F  F |   T
+#     F  T |   T
+#     T  F |   F
+#     T  T |   T
+# 
+# Sestavite funkcijo `implikacija(a, b)`, ki vrne logično vrednost
+# implikacije `a => b`.
+# =============================================================================
+def implikacija(a, b):
+    return not a or b
+# =====================================================================@021415=
+# 4. podnaloga
+# Logični operator *ekvivalenca* ima naslednjo resničnostno tabelo:
+# 
+#     A  B | A <=> B
+#     -----+--------
+#     F  F |    T
+#     F  T |    F
+#     T  F |    F
+#     T  T |    T
+# 
+# Sestavite funkcijo `ekvivalenca(a, b)`, ki vrne logično vrednost implikacije
+# `a <=> b`.
+# 
+# Namig: Pomagajte si lahko s funkcijo `implikacija`.
+# =============================================================================
+def ekvivalenca(a, b):
+    return a == b
+# =====================================================================@021416=
+# 5. podnaloga
+# Logični operator *ekskluzivni ali* (*exclusive or* ali XOR) ima naslednjo
+# resničnostno tabelo:
+# 
+#     A  B | A XOR B
+#     -----+--------
+#     F  F |    F
+#     F  T |    T
+#     T  F |    T
+#     T  T |    F
+# 
+# Sestavite funkcijo `xor(a, b)`, ki vrne logično vrednost `a XOR b`.
+# =============================================================================
+def xor(a, b):
+    return not (a == b)
+# =====================================================================@021417=
+# 6. podnaloga
+# Logični operator *NAND* (*not and*) ima naslednjo
+# resničnostno tabelo:
+# 
+#     A  B | A NAND B
+#     -----+---------
+#     F  F |    T
+#     F  T |    T
+#     T  F |    T
+#     T  T |    F
+# 
+# Sestavite funkcijo `nand(a, b)`, ki vrne logično vrednost `a NAND b`.
+# =============================================================================
+def nand(a, b):
+    return not (a and b)
+# =====================================================================@021418=
+# 7. podnaloga
+# Operator NAND je prav poseben, saj z njim lahko izrazimo vse osnovne logične
+# operatorje (in s tem tudi vse operatorje).
+# 
+# Sestavite še funkcije `negacija_nand`, `disjunkcija_nand` in
+# `konjunkcija_nand`, ki vrnejo logične vrednosti negacije, disjunkcije in
+# konjunkcije svojih argumentov, vendar pri njihovih definicijah ne smete
+# uporabiti vgrajenih logičnih operacij ali funkcij iz prejšnjih podnalog.
+# Namesto tega uporabite funkcijo `nand`.
+# =============================================================================
+def negacija_nand (a):
+    return nand (a,a)
+
+def disjunkcija_nand (a,b):
+    return nand ( nand(a,a), nand (b,b))
+
+def konjunkcija_nand (a,b):
+    return nand (nand(a,b), nand(a,b))
+
+# Datumi
+# =====================================================================@021409=
+# 1. podnaloga
+# Sestavite funkcijo `je_prestopno(leto)`, ki vrne `True`, kadar je `leto`
+# prestopno, in `False`, kadar ni.
+# =============================================================================
+def je_prestopno(leto):
+    if leto % 400 == 0:
+        return True
+    elif leto % 100 == 0:
+        return False
+    elif leto % 4 == 0:
+        return True
+    else:
+        return False
+
+
+# =====================================================================@021410=
+# 2. podnaloga
+# Sestavite funkcijo `stevilo_dni(mesec, leto)`, ki vrne število dni danega
+# meseca (podanega s številom med 1 in 12) v danem letu.
+# =============================================================================
+def je_prestopno(leto):
+    if leto % 400 == 0:
+        return True
+    elif leto % 100 == 0:
+        return False
+    elif leto % 4 == 0:
+        return True
+    else:
+        return False
+
+def stevilo_dni(mesec, leto):
+    if mesec == 1 or mesec == 3 or mesec == 5 or mesec == 7 or mesec == 8 or mesec == 10 or mesec == 12:
+        return 31
+    elif mesec == 4 or mesec == 6 or mesec == 9 or mesec == 11:
+        return 30
+    elif mesec == 2:
+        if je_prestopno(leto):
+            return 29
+        else:
+            return 28
+
+# =====================================================================@021411=
+# 3. podnaloga
+# Sestavite funkcijo `je_veljaven_datum(dan, mesec, leto)`, ki vrne `True`
+# natanko tedaj, kadar `dan`, `mesec` in `leto` določajo veljaven datum
+# (torej `mesec` mora biti število med 1 in 12, `dan` pa mora ustrezati dnevu
+# v tem mesecu).
+# =============================================================================
+def je_veljaven_datum(dan, mesec, leto):
+    return 1 <= mesec <= 12 and 1 <= dan <= stevilo_dni(mesec, leto)
+
+
+# Razdalje med točkami
+# =====================================================================@021949=
+# 1. podnaloga
+# Sestavite funkcijo `ravninska_razdalja(x1, y1, x2, y2)`, ki vrne
+# razdaljo med točkama (`x1`, `y1`) in (`x2`, `y2`).
+# 
+#     >>> ravninska_razdalja(1, 2, 3, 4)
+#     2.82842712475
+# =============================================================================
+import math
+def ravninska_razdalja(x1, y1, x2, y2):
+    return math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))
+
+# =====================================================================@021950=
+# 2. podnaloga
+# Sestavite funkcijo `polarna_razdalja(r1, fi1, r2, fi2)`, ki vrne
+# razdaljo med točkama (`r1`, `fi1`) in (`r2`, `fi2`) v ravnini, pri
+# čemer so koordinate v polarnem zapisu, koti pa so izraženi v stopinjah.
+# 
+#     >>> polarna_razdalja(1, 30, 4, 90)
+#     3.60555127546
+# =============================================================================
+import math
+def polarna_razdalja(r1, fi1, r2, fi2):
+    rad_fi1 = math.radians(fi1)
+    rad_fi2 = math.radians(fi2)
+    
+    x1 = math.cos(rad_fi1) * r1
+    y1 = math.sin(rad_fi1) * r1
+    x2 = math.cos(rad_fi2) * r2
+    y2 = math.sin(rad_fi2) * r2
+    return math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))
+
+##pretvori kote iz stopinj v radiane !!!
+
+# Obresti
+# =====================================================================@021419=
+# 1. podnaloga
+# Pri enostavnem obrestovanju s fiksno obrestno mero se vedno obrestuje
+# samo glavnica, ne pa tudi obresti. Tako je vrednost na računu pri začetnem
+# pologu $A_0$ po $n$ mesecih podana s formulo $A_0 (1 + m n)$, kjer je $m$
+# pripadajoča mesečna obrestna mera.
+# 
+# Sestavite funkcijo
+# `enostavno_obrestovanje(polog, mesecna_obrestna_mera, st_mesecev)`,
+# ki za enostavno obrestovanju izračuna vrednost denarja na računu pri danem
+# začetnem pologu, mesečni obrestni meri in številu mesecev.
+# 
+# Primeri:
+# 
+#     >>> enostavno_obrestovanje(100, 0.5, 0)
+#     100.0
+#     >>> enostavno_obrestovanje(100, 0.01, 1)
+#     101.0
+#     >>> enostavno_obrestovanje(100, 0.05, 12)
+#     160.0
+# =============================================================================
+def enostavno_obrestovanje(polog, mesecna_obrestna_mera, st_mesecev):
+    return polog * (1 + mesecna_obrestna_mera *  st_mesecev)
+
+# =====================================================================@021420=
+# 2. podnaloga
+# Pri obrestno obrestnem računu s fiksno obrestno mero se poleg glavnice
+# obrestujejo tudi obresti. Za glavnico $A_0$ je vrednost po $n$ mesecih podana
+# s formulo $A_0 (1 + m)^n$, kjer je $m$ pripadajoča mesečna obrestna mera.
+# 
+# Sestavite funkcijo
+# `obrestno_obrestovanje(polog, mesecna_obrestna_mera, st_mesecev)`,
+# ki izračuna vrednost denarja na računu pri danem začetnem pologu, mesečni
+# obrestni meri in številu mesecev, pri čemer se obresti računajo po obrestno
+# obrestnem računu.
+# 
+# Primeri:
+# 
+#     >>> obrestno_obrestovanje(100, 0.5, 0)
+#     100.0
+#     >>> obrestno_obrestovanje(100, 0.05, 1)
+#     105
+#     >>> obrestno_obrestovanje(100, 0.01, 12)
+#     112.68250301319698
+# =============================================================================
+def obrestno_obrestovanje(polog, mesecna_obrestna_mera, st_mesecev):
+    return polog * ((1 + mesecna_obrestna_mera) ** st_mesecev)
+
+
+# =====================================================================@021421=
+# 3. podnaloga
+# V bančništvu pogosto oglašujemo letno obrestno mero kljub temu, da obrestujemo
+# mesečno.
+# 
+# Napišite funkcijo `pretvori_v_letno_obrestno_mero(mesecna_obrestna_mera)`,
+# ki kot parameter sprejme mesečno obrestno mero, izraženo z decimalnim
+# številom, in jo pretvori v letno obrestno mero, izraženo v odstotkih
+# (zaokroženih na najbližje celo število). Pri računanju upoštevajte obrestno
+# obrestni račun.
+# 
+# *Namig:* `help(round)`.
+# =============================================================================
+def pretvori_v_letno_obrestno_mero(mesecna_obrestna_mera):
+    letna_obrestna_mera =  ((1 + mesecna_obrestna_mera) ** 12 - 1 ) * 100
+    return round(letna_obrestna_mera)
+
+# upoštevaj pretvorbo enačb iz mesečne v letno (1+r)^12 -1 
+
+# Kontrolne števke
+# =====================================================================@021406=
+# 1. podnaloga
+# Sestavite funkcijo `vsota_kvadratov_stevk(n)`, ki vrne vsoto kvadratov števk
+# *tromestnega* števila `n`.
+# 
+#     >>> vsota_kvadratov_stevk(123)
+#     14
+# =============================================================================
+def vsota_kvadratov_stevk(n):
+    vsota = 0
+    for znak in str(n):  # Pretvorimo število v niz
+        vsota += int(znak) ** 2  # Kvadriramo in dodamo vsoti
+    return vsota
+
+
+# =====================================================================@021407=
+# 2. podnaloga
+# Sestavite funkcijo `obrat(n)`, ki vrne število, ki ga dobimo, če tromestnemu
+# številu `n` zamenjamo števki na mestu enic in stotic.
+# 
+#     >>> obrat(123)
+#     321
+# =============================================================================
+def obrat(n):
+    vsota = 0
+    faktor = 1
+    for znak in str(n):  # Pretvorimo število v niz
+        vsota += int(znak) * faktor
+        faktor *= 10
+    return vsota
+
+# =====================================================================@021408=
+# 3. podnaloga
+# Da bi pri obdelavi podatkov lahko prepoznali morebitne napake, številske
+# podatke pogosto opremimo s kontrolnimi števkami. Eden takšnih podatkov je
+# sklic (referenca) po standardu SI12, ki ga uporabljamo pri plačevanju s
+# položnicami UPN. Sklic zapišemo kot 13-mestno število, pri čemer je prvih 12
+# števk poljubnih, zadnja (trinajsta) pa je kontrolna, torej izračunana iz
+# prejšnjih, in nam služi za preverjanje, ali je pri branju podatkov s položnice
+# bilo vse v redu.
+# 
+# Kontrolno števko za dano 12-mestno število izračunamo tako, da števke od desne
+# proti levi pomnožimo z zaporednimi števili 2, 3, 4, … (enice torej pomnožimo z
+# 2, desetice s 3, stotice s 4, …). Dobljene produkte seštejemo, nato izračunamo
+# ostanek, ki ga da dobljena vsota pri deljenju z 11, in ta ostanek odštejemo od
+# 11. Dobimo število med 1 in 11. Če je to število manjše od 10, je to že kar
+# iskana kontrolna števka, sicer pa je kontrolna števka enaka 0.
+# 
+# Sestavite funkcijo `dodaj_kontrolno_stevko(sklic)`, ki za 12-mestno število
+# `sklic` vrne 13-mestno število s pripadajočo kontrolno števko.
+# 
+#     >>> dodaj_kontrolno_stevko(265195368523)
+#     2651953685235
+# =============================================================================
+def dodaj_kontrolno_stevko(sklic):
+    niz = 0
+    kontrolnast = 0
+    stevilo = 0
+    vsota = 0
+    faktor = 13
+    for znak in str(sklic):
+        vsota += int(znak) * faktor
+        faktor -= 1
+    stevilo = 11 - (vsota % 11)
+    if stevilo < 10:
+        kontrolnast = stevilo
+    elif stevilo >= 10:
+        kontrolnast = 0
+    niz = int(sklic) * 10 + kontrolnast
+    return niz
+
+
+???%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ZANKE:
+# Vsote potenc
+# =====================================================================@021456=
+# 1. podnaloga
+# Sestavite funkcijo `vsota_prvih(n)`, ki vrne vsoto prvih `n` naravnih števil.
+# =============================================================================
+def vsota_prvih(n):
+    x = 1
+    vsota = 0    
+    while n > 0:
+        vsota += x
+        x += 1
+        n -= 1
+    return vsota
+# =====================================================================@021457=
+# 2. podnaloga
+# Sestavite funkcijo `vsota_prvih_kvadratov(n)`, ki vrne vsoto kvadratov
+# prvih `n` naravnih števil.
+# =============================================================================
+def vsota_prvih_kvadratov(n):
+    x = 1
+    vsota = 0    
+    while n > 0:
+        vsota += (x ** 2)
+        x += 1
+        n -= 1
+    return vsota
+# =====================================================================@021458=
+# 3. podnaloga
+# Sestavite funkcijo `vsota_prvih_potenc(n, k)`, ki vrne vsoto `k`-tih potenc
+# prvih `n` naravnih števil. Argument `k` naj bo neobvezen in naj ima privzeto
+# vrednost `1`.
+# =============================================================================
+def vsota_prvih_potenc(n, k = 1):
+    vsota = 0
+    x = 0   
+    while n >= x:
+        vsota += (x ** k)
+        x += 1
+    return vsota
+
+# Vsote števk
+# =====================================================================@021459=
+# 1. podnaloga
+# Sestavite funkcijo `vsota_stevk(n)`, ki vrne vsoto števk podanega števila.
+# =============================================================================
+def vsota_stevk(n):
+    vsota = 0
+    while n > 0:
+        stevka = n % 10
+        n = n // 10
+        vsota += stevka
+    return vsota
+# =====================================================================@021460=
+# 2. podnaloga
+# Sestavite funkcijo `vsota_vecjih_stevk(n, k)`, ki vrne vsoto tistih števk
+# števila `n`, ki so večje ali enake `k`. Če parametra `k` ne podamo, naj
+# funkcija vrne vsoto vseh števk števila `n`.
+# =============================================================================
+def vsota_vecjih_stevk(n, k = 0):
+    vsota = 0
+    while n > 0:
+        stevka = n % 10
+        n = n // 10
+        if stevka >= k:
+            vsota += stevka
+    return vsota
+# =====================================================================@021461=
+# 3. podnaloga
+# Sestavite funkcijo `vsota_stevk_stevil_med(m, n)`, ki vrne vsoto števk
+# vseh števil med vključno `m` in `n`.
+# =============================================================================
+#def vsota_stevk_stevil_med(m, n):
+    vsota = 0
+    for stevilka in range(m, n + 1):
+        vsota += sum(int(stevka) for stevka in str(stevilka))
+    return vsota
+
+def vsota_stevk_stevil_med(m, n):
+    vsota = 0
+    stevilo = m
+    while stevilo >= m and stevilo <= n:
+        vsota += vsota_stevk(stevilo)
+        stevilo += 1
+    return vsota
+
+# Delne vsote vrst
+# =====================================================================@021951=
+# 1. podnaloga
+# Napišite funkcijo `vsota_potenc(n, k)`, ki izračuna vsoto
+#    $$1^k + 2^k + ... + n^k$$
+# =============================================================================
+def vsota_potenc(n, k):
+    vsota = 0
+    stevilo = 1
+    while stevilo <= n:
+        vsota += stevilo ** k
+        stevilo += 1
+    return vsota
+# =====================================================================@021952=
+# 2. podnaloga
+# Sestavite funkcijo `vsota_harmonicne(n)`, ki izračuna delno vsoto
+#    $$1 + 1 / 2 + 1 / 3 + ... + 1 / n$$
+# =============================================================================
+def vsota_harmonicne(n):
+    vsota = 0
+    stevilo = 1
+    x = 1
+    while x <= n:
+        vsota += stevilo * 1 / x
+        x += 1
+    return vsota
+# =====================================================================@021953=
+# 3. podnaloga
+# Sestavite funkcijo `divergenca_harmonicne(n)`, ki izračuna število
+# členov harmonične vrste, ki jih je treba sešteti, da bo njihova delna
+# vsota večja od števila `n`.
+# =============================================================================
+def divergenca_harmonicne(n):
+    vsota = 0
+    cleni = 0
+    x = 1
+    while vsota <= n:
+        vsota += (1 * (1 / x))
+        x += 1
+        cleni += 1
+    return cleni   
+# =====================================================================@021954=
+# 4. podnaloga
+# Sestavite funkcijo `eksponentna(n)`, ki izračuna delno vsoto:
+#    $$1 + 1 / 1! + 1 / 2! + 1 / 3! + ... + 1 / n!$$
+# =============================================================================
+import math
+def eksponentna(n):
+    vsota = 0
+    x = 0
+    while x <= n:
+        vsota += (1 / math.factorial(x))
+        x += 1
+    return vsota
+
+# Kvadratni koren
+#
+# Približke za kvadratni koren števila $n$ lahko izračunamo po naslednjem
+# postopku. Začetni približek $x_0$ je enak $n / 2$. Vsak naslednji približek
+# $x_{k + 1}$ pa izračunamo kot $(x_k + n / x_k) / 2$.
+# =====================================================================@021462=
+# 1. podnaloga
+# Sestavite funkcijo `priblizek_po_korakih(n, k)`, ki po zgornjem postopku
+# izračuna `k`. približek korena števila `n`.
+# =============================================================================
+def priblizek_po_korakih(n, k):
+    x = 1
+    priblizek = 0
+    if k == 0:
+        priblizek = (n / 2)
+    elif k > 0:
+        priblizek = (n / 2)
+        while x <= k:
+            priblizek = ((priblizek + n / priblizek) / 2)
+            x += 1
+    return priblizek
+
+# =====================================================================@021463=
+# 2. podnaloga
+# Sestavite funkcijo `priblizek_do_natancnosti(n, eps)`, ki po zgornjem
+# postopku izračuna prvi približek korena števila `n`, za katerega se kvadrat
+# približka od `n` razlikuje za manj kot `eps`. Smislena vrednost za argument
+# `eps` je npr. $10^{-6}$.
+# =============================================================================
+#def priblizek_do_natancnosti(n, eps):
+    k = 1  # Število korakov
+    while True:
+        priblizek = priblizek_po_korakih(n, k) # Preverimo, ali je razlika kvadratov znotraj eps
+        if abs(n - priblizek**2) < eps:
+            return priblizek
+        k += 1  # Povečamo število korakov
+
+def priblizek_do_natancnosti(n, eps):
+    x = 1
+    priblizek = (n / 2)
+    while abs(n - priblizek ** 2) >= eps:
+        priblizek = ((priblizek + n / priblizek) / 2)
+        x += 1
+    return priblizek
+
+# Evklidov algoritem
+# =====================================================================@021970=
+# 1. podnaloga
+# Implementirajte [Evklidov algoritem](https://sl.wikipedia.org/wiki/Evklidov_algoritem)
+# za iskanje največjega skupnega delitelja s pomočjo zanke `while`.
+# 
+#     >>> evklidov_algoritem(144, 40)
+#     8
+#     >>> evklidov_algoritem(81, 36)
+#     9
+# =============================================================================
+def evklidov_algoritem(x, y):
+    while y != 0:
+        x, y = y, x % y
+    return x
+
+# Zlati rez
+#
+# Pravimo, da sta števili $a$ in $b$ v razmerju _zlatega reza_, kadar je
+# $a : b$ enako $(a + b) : a$, kar je takrat, ko je $\frac{a}{b}$ enako
+# številu $\phi = \frac{1 + \sqrt{5}}{2}$.
+# 
+# Približek števila $\phi$ lahko izračunamo z zaporedjem
+#   $\phi_0, \phi_1, \phi_2, \dots$,
+# kjer je $\phi_0 = 1$, naslednji približek $\phi_{n + 1}$ pa izračunamo
+# kot
+#   $\phi_{n + 1} = 1 + 1 / \phi_n$.
+# =====================================================================@021475=
+# 1. podnaloga
+# Sestavite funkcijo `naslednji_priblizek`, ki iz podanega približka po
+# zgornjem postopku izračuna naslednji približek števila $\phi$.
+# =============================================================================
+def naslednji_priblizek(x):
+    return 1 + 1 / x
+# =====================================================================@021476=
+# 2. podnaloga
+# Sestavite funkcijo `priblizek(k)`, ki izračuna `k`. približek števila
+# $\phi$. Za začetni približek (ko je `k` enak $0$) vzamite število $1$.
+# =============================================================================
+def priblizek(k):
+    x = 1
+    for _ in range(k):
+        x = naslednji_priblizek(x)
+    return x
+# =====================================================================@021477=
+# 3. podnaloga
+# Sestavite funkcijo `natancni_priblizek`, ki sprejme pozitivno realno 
+# število, ki predstavlja natančnost, ter izračuna prvi približek
+# števila $\phi$, ki se od prejšnjega približka razlikuje za manj kot
+# podano natančnost.
+# =============================================================================
+def natancni_priblizek(eps):
+    prejsnji = 1
+    naslednji = naslednji_priblizek(prejsnji)
+    while abs(prejsnji - naslednji) >= eps:
+        prejsnji = naslednji 
+        naslednji = naslednji_priblizek(prejsnji)
+    return naslednji
+
+# Praštevila
+# =====================================================================@021945=
+# 1. podnaloga
+# Sestavite funkcijo `je_prastevilo`, ki sprejme število in vrne `True`, če 
+# je podano število praštevilo, in `False`, če ni.
+# =============================================================================
+def je_prastevilo(n):
+    if n <= 1:
+        return False
+    else:
+        d = 2
+        while d ** 2 <= n:
+            if n % d == 0:
+                return False
+            d += 1
+        return True
+# =====================================================================@021946=
+# 2. podnaloga
+# Sestavite funkcijo `prastevilo(n)`, ki vrne `n`-to praštevilo.
+# =============================================================================
+def prastevilo(n):
+    i = 1
+    kandidat = 2
+    while i < n:
+        kandidat += 1
+        if je_prastevilo(kandidat):
+            i += 1
+    return kandidat
+# =====================================================================@021947=
+# 3. podnaloga
+# Sestavite funkcijo `naslednje_prastevilo(n)`, ki vrne prvo praštevilo,
+# strogo večje od števila `n`.
+# =============================================================================
+def naslednje_prastevilo(n):
+    kandidat = n + 1
+    while not je_prastevilo(kandidat):
+        kandidat += 1
+    return kandidat
+# =====================================================================@021948=
+# 4. podnaloga
+# Sestavite funkcijo `prvo_prastevilo_z_vsoto_stevk_vsaj(n)`, ki izračuna
+# točno to, kar piše v njenem imenu.
+# =============================================================================
+def vsota_stevk(n):
+    vsota = 0
+    while n > 0:
+        vsota += n % 10
+        n //= 10
+    return vsota
+
+def prvo_prastevilo_z_vsoto_stevk_vsaj(n):
+    kandidat = (n % 9 + 1) * 10 ** (n // 9) - 1
+    while not (je_prastevilo(kandidat) and vsota_stevk(kandidat) >= n):
+        kandidat += 1
+    return kandidat
+
+# Collatzovo zaporedje
+#
+# Collatzovo zaporedje tvorimo na sledeč način. Začnemo z nekim naravnim
+# številom $n$, ki ga nato delimo z $2$, če je sodo, ali pa pomnožimo s $3$ in
+# prištejemo $1$, če je liho. Postopek ponavljamo, dokler ne pridemo do števila
+# $1$ (v tem primeru stvar ni več zanimiva, saj se začno ponavljati števila
+# $1, 4, 2, 1, 4, 2, 1, \ldots$). Primer zaporedja, ki se začne z $6$ je tako
+# $6, 3, 10, 5, 16, 8, 4, 2, 1$. Collatzova domneva, ki trdi, da za poljubno
+# naravno število njegovo Collatzovo zaporedje sčasoma doseže $1$, je še vedno
+# nerešena.
+# =====================================================================@021468=
+# 1. podnaloga
+# Sestavite funkcijo `naslednji_clen`, ki sprejme število in izračuna člen,
+# ki v Collatzovemu zaporedju sledi temu številu.
+# =============================================================================
+def naslednji_clen(n):
+    if n % 2 == 0:
+        return n // 2
+    else:
+        return 3 * n + 1
+# =====================================================================@021469=
+# 2. podnaloga
+# Sestavite funkcijo `dolzina_zaporedja`, ki sprejme število in izračuna 
+# dolžino Collatzovega zaporedja, ki se začne s tem številom.
+# =============================================================================
+def dolzina_zaporedja(n):
+    dolzina = 1
+    while n != 1:
+        n = naslednji_clen(n)
+        dolzina += 1
+    return dolzina
+# =====================================================================@021470=
+# 3. podnaloga
+# Sestavite funkcijo `najvecji_clen`, ki sprejme število in izračuna največji 
+# člen v Collatzovem zaporedju, ki se začne s tem številom.
+# =============================================================================
+def najvecji_clen(n):
+    najvecji = n
+    while n != 1:
+        n = naslednji_clen(n)
+        najvecji = max(najvecji, n)
+    return najvecji
+# =====================================================================@021471=
+# 4. podnaloga
+# Sestavite funkcijo `najdaljse_zaporedje(m, n)`, ki vrne dolžino najdaljšega
+# zaporedja med vsemi tistimi Collatzovimi zaporedji, ki se začnejo s števili
+# med (vključno) `m` in `n`.
+# =============================================================================
+def najdaljse_zaporedje(m, n):
+    dolzina = 0
+    for k in range(m, n + 1):
+        dolzina = max(dolzina, dolzina_zaporedja(k))
+    return dolzina
+
+???%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+SEZNAMI:
+# Delo s seznami
+# =====================================================================@021433=
+# 1. podnaloga
+# Sestavite funkcijo `razpolovi_seznam`, ki seznam prepolovi na dva podseznama
+# in ju vrne kot par seznamov. V primeru lihe dolžine naj bo dolžina prvega
+# podseznama krajša ali enaka dolžini drugega podseznama.
+# 
+#     >>> razpolovi_seznam(["a", "b", "c", "d"])
+#     (["a", "b"], ["c", "d"])
+#     >>> razpolovi_seznam([5, 4, 3, 2, 1])
+#     ([5, 4], [3, 2, 1])
+# =============================================================================
+def razpolovi_seznam(s):
+    d = len(s)
+    i = d // 2
+    return (s[:i], s[i:])
+# =====================================================================@021434=
+# 2. podnaloga
+# Sestavite funkcijo `zamenjaj_elementa(sez,i,j)`, ki iz seznama `sez` sestavi
+# nov seznam, v katerem sta elementa na mestih `i` in `j` zamenjana med sabo.
+# Če kateri od indeksov `i` in `j` ne ustrezata nobenemu elementu, naj funkcija
+# vrne kar seznam `sez`.
+# 
+#     >>> zamenjaj_elementa([1, 2, 3, 4], 1, 2)
+#     [1, 3, 2, 4]
+#     >>> zamenjaj_elementa([1, 2, 3, 4], 3, 1)
+#     [1, 4, 3, 2]
+#     >>> zamenjaj_elementa([1, 2, 3, 4], 1, 2017)
+#     [1, 2, 3, 4]
+# =============================================================================
+def zamenjaj_elementa(sez,i,j):
+    if len(sez) > i and len(sez) > j:
+        x = sez [i]
+        y = sez [j]
+        del sez [i]
+        sez.insert (i, y)
+        del sez [j]
+        sez.insert (j, x)
+        return sez
+    else:
+        return sez
+# =====================================================================@021435=
+# 3. podnaloga
+# Sestavite funkcijo `porezani_podseznami`, ki sprejme seznam in zgradi nov
+# seznam podseznamov, ki jih pridobimo tako, da podanemu seznamu po vrsti
+# odstranjujemo začetne elemente.
+# 
+#     >>> porezani_podseznami([1, 2, 3, 4])
+#     [[1, 2, 3, 4], [2, 3, 4], [3, 4], [4], []]
+# =============================================================================
+def porezani_podseznami (s):
+    sez = []
+    for i in range( len(s)):
+        x = s.copy()
+        sez.append(x)
+        del s [0]
+    sez.append([])
+    return(sez)
+# =====================================================================@021436=
+# 4. podnaloga
+# Sestavite funkcijo `najvecji_element`, ki vrne največji element seznama. Če
+# je seznam prazen, naj funkcija vrne `None`.
+# 
+#     >>> najvecji_element([2, 4, 3, 1])
+#     4
+#     >>> najvecji_element([1, 4, 5, 5, 2, -10])
+#     5
+# =============================================================================
+def najvecji_element (s):
+    if len(s) > 0:
+        s.sort()
+        return s[-1]
+    else:
+        return None
+# =====================================================================@021437=
+# 5. podnaloga
+# Sestavite funkcijo `zdruzi_sezname`, ki zdruzi seznam seznamov v en seznam,
+# ki vsebuje vse elemente seznamov v podanem seznamu seznamov.
+# 
+#     >>> zdruzi_sezname([[1], [2, 3], [4, 5, 6]])
+#     [1, 2, 3, 4, 5, 6]
+#     >>> zdruzi_sezname([[], [0], [], [0], [], [7], []])
+#     [0, 0, 7]
+# =============================================================================
+def zdruzi_sezname (s):
+    x = []
+    for i in range( len(s)):
+        x += s[i]
+    return(x)
+
+# Primerjanje
+#
+# Pri reševanju nalog ne uporabljajte funkcij kot sta `min` in `max`.
+# =====================================================================@021438=
+# 1. podnaloga
+# Definirajte funkcijo `vecji_element`, ki sprejme seznam in število ter kot
+# rezultat vrne, ali seznam vsebuje število strogo večje od podanega.
+# 
+#     >>> vecji_element([3, 6, 2], 5)
+#     True
+#     >>> vecji_element([7, 5, 1], 8)
+#     False
+#     >>> vecji_element([3], 3)
+#     False
+# =============================================================================
+def vecji_element(s, x):
+    return any(element > x for element in s)
+# =====================================================================@021439=
+# 2. podnaloga
+# Definirajte funkcijo `prvi_najvecji`, ki kot rezultat vrne `True`, če je prvi
+# element seznama večji ali enak preostalim elementom seznama, in `False`
+# sicer.
+# 
+#     >>> prvi_najvecji([5, 3, 6, 2])
+#     False
+#     >>> prvi_najvecji([8, 7, 5, 1])
+#     True
+# =============================================================================
+def prvi_najvecji(s):
+    if not s:
+        return True
+    x = s[0]
+    for i in s[1:]:
+        if i > x:
+            return False
+    return True
+# =====================================================================@021440=
+# 3. podnaloga
+# Definirajte funkcijo `vsi_vecji(sez1, sez2)`, ki sprejme dva seznama, `sez1`
+# in `sez2`, ter preveri ali je vsak element seznama `sez1` večji ali enak
+# elementom seznama `sez2`.
+# 
+#     >>> vsi_vecji([2, 4], [1, 3])
+#     False
+#     >>> vsi_vecji([5, 8], [1, 2, 4])
+#     True
+# =============================================================================
+def vsi_vecji(sez1, sez2):
+    for element1 in sez1:
+        for element2 in sez2:
+             if element1 < element2:
+                return False
+    return True
+
+# Praštevila, drugič
+# =====================================================================@021441=
+# 1. podnaloga
+# Definirajte funkcijo `je_deljivo_s_katerim_od(n, seznam)`, ki vrne `True`
+# natanko tedaj, ko je število `n` deljivo z vsaj kakšnim številom iz seznama
+# števil `seznam`.
+# 
+#     >>> je_deljivo_s_katerim_od(20, [3, 4, 6])
+#     True
+# =============================================================================
+def je_deljivo_s_katerim_od(n, seznam):
+    for element in seznam:
+        if (n % element) == 0:
+            return True
+    return False
+# =====================================================================@021442=
+# 2. podnaloga
+# Definirajte funkcijo `prastevila_do`, ki vrne seznam vseh praštevil, ki so
+# manjša ali enaka podanemu številu.
+# 
+#     >>> prastevila_do(10)
+#     [2, 3, 5, 7]
+# =============================================================================
+def je_pra(stevilo):
+    if stevilo < 2:
+        return False
+    for i in range(2, int(stevilo**0.5) + 1):
+        if stevilo % i == 0:
+            return False
+    return True
+
+def prastevila_do(n):
+    return [stevilo for stevilo in range(2, n + 1) if je_pra(stevilo)]
+# =====================================================================@021443=
+# 3. podnaloga
+# Definirajte funkcijo `je_prastevilo`, ki vrne ali je število praštevilo.
+# =============================================================================
+def je_prastevilo(n):
+    if n <= 1:
+        return False
+    else:
+        prastevila = prastevila_do(round(n ** 0.5))
+        return not je_deljivo_s_katerim_od(n, prastevila)
+
+# Krogi
+# =====================================================================@021449=
+# 1. podnaloga
+# Krog predstavimo s trojico `(x, y, r)`, kjer je `(x, y)` središče kroga in
+# `r` njegov radij.
+# 
+# Sestavite funkcijo `v_uniji(x0, y0, krogi)`, ki vrne `True`, če točka
+# `(x0, y0)` leži v vsaj enem krogu v seznamu `krogi`, in `False`
+# sicer.
+# =============================================================================
+def v_uniji(x0, y0, krogi):
+    for (x, y, r) in krogi:
+        if (((x - x0)**2 + (y - y0)**2)**(1/2)) <= r:
+            return True
+    return False
+# =====================================================================@021450=
+# 2. podnaloga
+# Sestavite funkcijo `v_preseku(x, y, krogi)`, ki vrne `True`, če točka
+# `(x, y)` leži v vseh krogih v danem seznamu `krogi`, in `False`
+# sicer.
+# =============================================================================
+def v_preseku(x, y, krogi):
+    for (x0, y0, r) in krogi:
+        if (((x - x0)**2 + (y - y0)**2)**(1/2)) > r:
+            return False
+    return True
+# =====================================================================@021451=
+# 3. podnaloga
+# Sestavite funkcijo `pravokotnik(krogi)`, ki poišče najmanjši pravokotnik,
+# ki vsebuje unijo vseh krogov iz danega seznama `krogi`. Pravokotnik
+# naj vrne kot nabor `(x_min, y_min, x_max, y_max)`, torej najprej
+# koordinati oglišča spodaj levo, nato pa koordinati oglišča zgoraj desno.
+# 
+# Predpostavite, da seznam vsebuje vsaj en krog.
+# 
+#     >>> pravokotnik([(0, 0, 1)]
+#     (-1, -1, 1, 1)
+# =============================================================================
+def pravokotnik(krogi):
+    x_min = 0
+    y_min = 0
+    x_max = 0
+    y_max = 0
+    for (x, y, r) in krogi:
+        dx_min = x - r
+        dy_min = y - r
+        dx_max = x + r
+        dy_max = y + r 
+        if x_min > dx_min:
+            x_min = dx_min
+        if y_min > dy_min:
+            y_min = dy_min
+        if x_max < dx_max:
+            x_max = dx_max
+        if y_max < dy_max:
+            y_max = dy_max  
+    return (x_min, y_min, x_max, y_max)
+
+# Preverimo urejanje
+# =====================================================================@021963=
+# 1. podnaloga
+# Z namenom preverjanja različnih algoritmov za urejanje seznamov, si želite
+# pripraviti zanimive testne primere. Ti bodo sestavljeni iz seznamov parov, 
+# kjer druga komponenta pove, na katerem mestu mora stati par. 
+# 
+# Sestavite funkcijo `pripravi_primer`, ki sprejme dva seznama - seznam 
+# elementov in seznam indeksov - ter iz njiju napravi testni primer. 
+# 
+#     >>> pripravi_primer(["c", "b", "d", "a"], [2, 1, 3, 0])
+#     [('c', 2), ('b', 1), ('d', 3), ('a', 0)]
+#     >>> pripravi_primer(['daj', 'cas', 'da', 5, 'zapeljem', 'mi', 'te', 'minut'],[3, 4, 5, 0, 7, 2, 6, 1])
+#     [('daj', 3), ('cas', 4), ('da', 5), (5, 0), ('zapeljem', 7), ('mi', 2), ('te', 6), ('minut', 1)]
+# =============================================================================
+def pripravi_primer(sez1, sez2):
+    sez3 = []
+    for i in range(len(sez1)):
+        x = sez1[i]
+        y = sez2[i]
+        sez3.append ((x, y))
+    return sez3
+# =====================================================================@021964=
+# 2. podnaloga
+# Svoje urejevalne algoritme ste uporabili na primerih in želite preveriti,
+# ali delujejo pravilno. Sestavite funkcijo`pravilno_urejen`, ki pove, ali je
+# seznam urejen skladno z zgornjim principom.
+# 
+# Namig: uporabite funkcijo `enumerate`
+# 
+#     >>> pravilno_urejen([('so', 5), ('vcasih', 6), ('stezice', 3), ('bile?', 7), ('tiste', 2), ('k', 4), ('Kje', 0), ('so', 1)])
+#     False
+#     >>> pravilno_urejen([('Kje', 0), ('so', 1), ('tiste', 2), ('stezice', 3), ('k', 4), ('so', 5), ('vcasih', 6), ('bile?', 7)])
+#     True
+#     >>> pravilno_urejen([('daj', 3), ('cas', 4), ('da', 5), (5, 0), ('zapeljem', 7), ('mi', 2), ('te', 6), ('minut', 1)])
+#     False
+#     >>> pravilno_urejen([(5, 0), ('minut', 1), ('mi', 2), ('daj', 3), ('cas', 4), ('da', 5), ('te', 6), ('zapeljem', 7)])
+#     True
+# =============================================================================
+def pravilno_urejen(seznam):
+    primerjava = 0
+    for (x, y) in seznam:
+        if y != primerjava:
+            return False
+        primerjava += 1
+    return True
+
+???%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+NIZI:
+# Ogrevanje
+# =====================================================================@039028=
+# 1. podnaloga
+# Nagajivi škrat je pokvaril zamike v funkciji `vsebuje_vprasaj` in premešal
+# vrstice v funkciji `odstrani_presledke`. Popravite obe funkciji tako, da
+# uspešno opravita vse teste.
+# 
+# *Funkciji sta že definirani v datoteki.*
+# =============================================================================
+def vsebuje_vprasaj(niz):
+    for znak in niz:
+        if znak == "?":
+            return True
+    return False
+
+def odstrani_presledke(niz):
+    nov_niz = ""
+    for znak in niz:
+        if znak == " ":
+            pass
+        else:
+            nov_niz += znak
+    return nov_niz
+# =====================================================================@039029=
+# 2. podnaloga
+# Napišite funkcijo `vsebuje_niz_z_vprasajem`, ki sprejme seznam nizov ter
+# preveri, ali v seznamu obstaja niz, ki vsebuje vprašaj.
+# 
+#     >>> vsebuje_niz_z_vprasajem(['Katera', 'riba', 'bi', 'pa', 'ne', 'more?'])
+#     True
+#     >>> vsebuje_niz_z_vprasajem(['Skuša'])
+#     False
+# =============================================================================
+def vsebuje_niz_z_vprasajem(sez):
+    for niz in sez:
+        if vsebuje_vprasaj(niz):
+            return True
+    return False
+# =====================================================================@039030=
+# 3. podnaloga
+# Sestavite funkcijo `zgolj_dolge_besede`, ki sprejme seznam nizov in število,
+# ki predstavlja najmanjšo zahtevano dolžino niza, ter preveri, da so vsi nizi
+# v seznamu primerne dolžine.
+# 
+#     >>> zgolj_dolge_besede(['Gandalf', 'Aragorn', 'Gimli', 'Legolas'], 5)
+#     True
+#     >>> zgolj_dolge_besede(['goblin', 'ork', 'zmaj', 'Balrog'], 5)
+#     False
+# =============================================================================
+def zgolj_dolge_besede(sez, d):
+    for beseda in sez:
+        if len(beseda) < d:
+            return False
+    return True
+
+# Delo z nizi
+# =====================================================================@039023=
+# 1. podnaloga
+# Sestavite funkcijo `prezrcali`, ki vrne prezrcaljen niz.
+# 
+#     >>> prezrcali('abeceda')
+#     'adeceba'
+# =============================================================================
+def prezrcali (beseda):
+    nov_niz = '' # tako se navede prazen niz
+    n = len(beseda) - 1
+    while n >= 0: #ker je -1 je laho tudi 0!!!
+        x = beseda[n]
+        nov_niz += x
+        n -= 1
+    return nov_niz
+# =====================================================================@039024=
+# 2. podnaloga
+# Sestavite funkcijo `je_palindrom`, ki preveri, če je niz palindrom.
+# 
+#     >>> je_palindrom('kajak')
+#     True
+# =============================================================================
+def je_palindrom (beseda):
+    nov_niz = ''
+    n = len(beseda) - 1
+    while n >= 0: 
+        x = beseda[n]
+        nov_niz += x
+        n -= 1
+    if nov_niz ==  beseda:
+        return True
+    else:
+        return False
+# =====================================================================@039025=
+# 3. podnaloga
+# Sestavite funkcijo `odstrani_presledke`, ki sprejme niz in vrne nov niz, ki
+# ga dobimo, če iz podanega niza odstranimo vse presledke.
+# 
+#     >>> odstrani_presledke('Ni vsak dan nedelja')
+#     'Nivsakdannedelja'
+# =============================================================================
+def odstrani_presledke (niz):
+    nov_niz = ''
+    presledek = ' '
+    n = 0
+    while n <= (len(niz) - 1): 
+        x = niz[n]
+        if x == presledek:
+            n += 1
+        else: 
+            nov_niz += x
+            n += 1
+    return nov_niz
+# =====================================================================@039026=
+# 4. podnaloga
+# Napišite funkcijo `odstrani_ponovljene_presledke`, ki sprejme niz in vrne nov
+# niz, kjer večkratne ponovitve presledka zamenjamo z enojnim presledkom.
+# 
+#     >>> odstrani_ponovljene_presledke('  * -   *   - * ')
+#     ' * - * - * '
+# =============================================================================
+def odstrani_ponovljene_presledke (niz):
+    nov_niz = ''
+    presledek = ' '
+    n = 0
+    while n <= (len(niz) - 1): 
+        x = niz[n]
+        if n == 0:
+            nov_niz += x
+            n += 1
+        elif (niz[n - 1] + x) == '  ':
+            n += 1
+        else: 
+            nov_niz += x
+            n += 1
+    return nov_niz
+# =====================================================================@039027=
+# 5. podnaloga
+# Na zabavi ste uspeli dobiti telefonsko številko sošolke/sošolca, ki ste jo/ga
+# pecali cel večer. Toda na poti domov vam je dež zbrisal nekaj cifer, zato ste
+# vdrli v FMF bazo in pridobili seznam vseh telefonskih številk.
+# 
+# Napišite funkcijo `najdi_stevilko(vzorec, seznam)`, ki iz možnega seznama
+# telefonskih številk vrne seznam tistih, ki ustrezajo vzorcu. Telefonske
+# številke so podane kot nizi z 9 znaki iz števk `0`-`9`, vzorec pa vsebuje
+# tudi znak `*`, ki pomeni, da te števke ne poznamo.
+# 
+# **Namig:** Napišite pomožno funkcijo, ki preveri ali številka ustreza vzorcu.
+# 
+#     >>> najdi_stevilko('05123***6', ['041890343', '051234446', '051342236'])
+#     ['051234446']
+#     >>> najdi_stevilko('0********', ['041890343', '051234446', '051342236'])
+#     ['041890343', '051234446', '051342236']
+#     >>> najdi_stevilko('0*1123*57', ['041123457', '071123456', '051123457'])
+#     ['041123457', '051123457']
+# =============================================================================
+def stevilka_ustreza(vzorec, stevilka):
+    for i in range(len(vzorec)):
+        if not (vzorec[i] == stevilka[i] or vzorec[i] == '*'):
+            return False
+    return True
+
+def najdi_stevilko(vzorec, seznam):
+    mozne_stevilke = []
+    for stevilka in seznam:
+        if stevilka_ustreza(vzorec, stevilka):
+            mozne_stevilke.append(stevilka)
+    return mozne_stevilke
+
+# Sprehod
+# =====================================================================@039031=
+# 1. podnaloga
+# Sestavite funkcijo `celostevilski`, ki sprejme niz, ki
+# predstavlja sprehod po celih številih, in vrne število, v katerem se
+# sprehod konča.
+# 
+# Sprehod po celih številih se začne v številu 0, predstavimo pa ga z
+# nizem, sestavljenim iz znakov `+` in `-`. Na ostale znake v nizu se
+# ne oziramo.
+# =============================================================================
+def celostevilski (niz):
+    vsota = 0
+    for stevilo in niz:
+        if stevilo == '+':
+            vsota += 1
+        elif stevilo == '-':
+            vsota -= 1
+    return vsota
+# =====================================================================@039032=
+# 2. podnaloga
+# Napišite število, v katerem se konča sprehod:
+# =============================================================================
+42
+# =====================================================================@039033=
+# 3. podnaloga
+# Sestavite funkcijo `ravninski`, ki sprejme niz, ki
+# predstavlja zaporedje korakov v ravnini, in vrne točko, v kateri se
+# sprehod konča.
+# 
+# Sprehod po ravnini se začne v izhodišču, predstavimo pa ga z nizem,
+# sestavljenim iz črk `S`, `J`, `V` ali `Z`, odvisno od smeri
+# (sever, jug, vzhod, zahod). Na ostale znake v nizu se ne oziramo.
+# =============================================================================
+def ravninski (niz):
+    tocka = [0, 0]
+    for crka in niz:
+        if crka == 'S':
+            tocka[1] += 1
+        elif crka == 'J':
+            tocka[1] -= 1
+        elif crka == 'V':
+            tocka[0] += 1
+        elif crka == 'Z':
+            tocka[0] -= 1
+    return (tocka[0], tocka[1])
+# =====================================================================@039034=
+# 4. podnaloga
+# Sestavite funkcijo `hitri(tek)`, ki sprejme niz, ki predstavlja
+# zaporedje korakov in skokov v ravnini, in vrne točko, v kateri se
+# tek konča.
+# 
+# Tek po ravnini se začne v izhodišču, predstavimo pa ga, tako kot
+# sprehod, z nizem, sestavljenim iz črk `S`, `J`, `V` ali `Z`, odvisno
+# od smeri (sever, jug, vzhod, zahod).
+# 
+# Poleg tega lahko tek vsebuje tudi števke od `1` do `9`, ki povedo,
+# koliko dolg naj bo naslednji korak. Tako niz `5S` pomeni skok
+# na sever, dolg 5 korakov. Privzamete lahko, da zaporednih števk v
+# nizu ni, ter da se na ostale znake v nizu ne oziramo.
+# =============================================================================
+def hitri(tek):
+    tocka = [0, 0]
+    n = 1
+    for crka in tek:
+        if crka in '123456789':   # namesto if crka == '9' or crka == '8' or crka == '7' or crka == '6' or crka == '5' or crka == '4' or crka == '3' or crka == '2' or crka == '1': 
+            n = int(crka)
+        elif crka == 'S':
+            tocka[1] += (n*1)
+            n = 1 
+        elif crka == 'J':
+            tocka[1] -= (n*1)
+            n = 1 
+        elif crka == 'V':
+            tocka[0] += (n*1)
+            n = 1 
+        elif crka == 'Z':
+            tocka[0] -= (n*1)
+            n = 1 
+    return (tocka[0], tocka[1])
+
+# Gnezdenje oklepajev
+#
+# Oklepaji so pravilno gnezdeni, če uklepaji in zaklepaji nastopajo v parih in
+# število zaklepajev nikoli ne preseže števila uklepajev, ko jih štejemo od
+# leve proti desni.
+# =====================================================================@039035=
+# 1. podnaloga
+# Sestavite funkcijo `oklepaji`, ki bo preverila, ali so v nizu oklepaji
+# pravilno gnezdeni. Na ostale znake naj se funkcija ne ozira.
+# 
+#     >>> oklepaji('(a + b)^2 = (((a^2) + 2ab) + b^2)')
+#     True
+#     >>> oklepaji('())(()')
+#     False
+# =============================================================================
+def oklepaji(niz):
+    '''Ali so oklepaji v nizu postavljeni pravilno'''
+    oklepaji = 0  # koliko je več predklepajev kot zaklepajev
+    for znak in niz:
+        if znak == '(':
+            oklepaji += 1
+        elif znak == ')':
+            oklepaji -= 1
+
+        if oklepaji < 0:  # nikoli ne sme biti več zaklepajev
+            return False
+
+    return oklepaji == 0  # na koncu jih mora biti enako
+
+
+???%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+DELO Z OBJEKTI:
+# Ogrevanje
+# =====================================================================@021478=
+# 1. podnaloga
+# Napišite funkcijo `poisci_zvezdico`, ki sprejme niz in vrne indeks, na
+# katerem se zvezdica `*` prvič pojavi. Če zvezdice ni v nizu, naj funkcija
+# vrne `None`.
+# 
+#     >>> poisci_zvezdico('Naj gre vse v *****!')
+#     14
+# =============================================================================
+def poisci_zvezdico (niz):
+    for znak in niz:
+        if znak == '*':
+            return niz.index(znak)
+    return None
+# =====================================================================@021479=
+# 2. podnaloga
+# Napišite funkcijo 'vse_crke_male', ki preveri, da niz ne vsebuje velikih črk.
+# 
+#     >>> vse_crke_male('Za spremembo ...')
+#     False
+#     >>> vse_crke_male('... je velika začetnica nezaželena!')
+#     True
+# =============================================================================
+def vse_crke_male (niz):
+    if niz.islower() == True:
+        return True
+    else:
+        return False
+# =====================================================================@021480=
+# 3. podnaloga
+# Napišite funkcijo `poudari_dolge_besede(sez, n)`, ki sprejme seznam nizov in
+# vrne nov seznam, kjer so vse besede daljše od `n` napisane z velikimi črkami.
+# 
+#     >>> poudari_dolge_besede(['Nikjer', 'ni', 'krofov', 's', 'čokolado'], 5)
+#     ['NIKJER', 'ni', 'KROFOV', 's', 'ČOKOLADO']
+# =============================================================================
+def poudari_dolge_besede(sez, n):
+    nov_seznam = []
+    for niz in sez:
+        if len(niz) > n:
+            nov_seznam.append(niz.upper())
+        else:
+            nov_seznam.append(niz)
+    return nov_seznam
+# =====================================================================@021481=
+# 4. podnaloga
+# Definirajte funkcijo `tisje_prosim`, ki v nizu vse velike črke spremeni v
+# male in zamenja vse pojavitve klicaja s piko.
+# 
+#     >>> tisje_prosim('V moji juhi je PODGANA!')
+#     'v moji juhi je podgana.'
+# =============================================================================
+def tisje_prosim (niz):
+    nov_niz = ''
+    for znak in niz:
+        if znak == '!' or znak == '.':
+            nov_niz += '.'
+        elif znak.isupper() == True:
+            nov_niz += znak.lower()
+        else:
+            nov_niz += znak
+    return nov_niz
+
+# Sklad oklepajev
+#
+# Oklepaji so pravilno gnezdeni, če oklepaji in zaklepaji nastopajo v parih in
+# število zaklepajev nikoli ne preseže števila oklepajev, ko jih štejemo od
+# leve proti desni.
+# =====================================================================@021482=
+# 1. podnaloga
+# Sestavite funkcijo `naivna_resitev`, ki sprejme niz in zgolj preveri, da se
+# število oklepajev `(`, `[`, ali `{` ujema s številom pripadajočih zaklepajev
+# `)`, `]`, oziroma `}`.
+# 
+#     >>> naivna_resitev("()[](){}{}")
+#     True
+#     >>> naivna_resitev("([})")
+#     False
+# =============================================================================
+def naivna_resitev(niz):
+    if niz.count('(') == niz.count(')') and niz.count('[') == niz.count(']') and niz.count('{') == niz.count('}'):
+        return True
+    else:
+        return False
+# =====================================================================@021483=
+# 2. podnaloga
+# Sestavite funkcijo `gnezdeni_oklepaji`, ki bo preverila, ali so v danem nizu
+# oklepaji pravilno gnezdeni. Pri tem upoštevajte, da `niz` lahko vsebuje poleg
+# oklepajev `()` še para `{}` in `[]`. Na ostale znake naj se funkcija ne
+# ozira.
+# 
+#     >>> gnezdeni_oklepaji('(a + b)^2 = ([{a^2} + 2ab] + b^2)')
+#     True
+#     >>> gnezdeni_oklepaji('(){]')
+#     False
+# 
+# **Namig:** Pomagajte si s pomožnim seznamom, v katerega ob sprehodu po nizu
+# dodajamo oziroma ostranjujemo oklepaje. Natančneje, ko vidimo oklepaj, ga
+# dodamo v pomožen seznam, in ko vidimo zaklepaj, preverimo, ali se ujema z
+# oklepajem na koncu seznama. V tem primeru zadnji element pomožnega seznama
+# odstranimo. Na koncu mora biti pomožni seznam prazen.
+# =============================================================================
+def gnezdeni_oklepaji(niz):
+    oklepaji = '({['
+    zaklepaji = ')}]'
+    seznam = []
+    for znak in niz:
+        if znak in oklepaji:
+            seznam.append(znak)
+        elif znak in zaklepaji:
+            if seznam == []:
+                return False
+            elif seznam[-1] != oklepaji[zaklepaji.index(znak)]:
+                return False
+            else:
+                seznam.pop()
+    return seznam == []
+
+# Ne obračaj mojih besed
+# =====================================================================@021484=
+# 1. podnaloga
+# Vaš sosed, svetovno priznani pisatelj, vam je potacal gredico s petunijami.
+# Odločeni, da mu otežite življenje s spreminjanjem njegovih zapiskov, ste se
+# spravili k pisanju funkcije `obrni_vrstni_red`. Funkcija sprejme niz
+# (sestavljen zgolj iz črk in presledkov) in v njem obrne vrstni red besed.
+# 
+#     >>> obrni_vrstni_red('kdor drugemu jamo koplje ne pade daleč od drevesa')
+#     'drevesa od daleč pade ne koplje jamo drugemu kdor'
+# =============================================================================
+def obrni_vrstni_red(niz):
+    return ' '.join(niz.split()[::-1]) # [::-1] pomeni, da obrne; ' '.join - združi z vmesnim presledkom
+# =====================================================================@021485=
+# 2. podnaloga
+# Vaš sosed je na žalost navdušen bralec japonskih stripov, zato mu branje od
+# desne proti levi ni tuje. Odločeni ste, da bo plačal za prerano smrt vaših
+# petunij, zato sestavite funkcijo `obrni_besede`, ki sprejme niz in v njem
+# obrne vrstni red črk v posameznih besedah (vrstni red besed se ne spremeni).
+# 
+#     >>> obrni_besede('palindromom kot je kajak ta funkcija ne naredi nič')
+#     'momordnilap tok ej kajak at ajicknuf en ideran čin'
+# =============================================================================
+def obrni_besede (niz):
+    return obrni_vrstni_red(niz[::-1]) # najprej obrnemo vse niz, nato pa po delih
+# =====================================================================@021486=
+# 3. podnaloga
+# Ves vaš trud je sosedu zgolj izboljšal bralne sposobnosti! Vendar vas spomin
+# na tragedijo petunij preganja v nočnih morah. Sestavite funkcijo
+# `sosed_naj_trpi`, ki v nizu obrne vrstni red črk, presledke pa ohrani na
+# istih mestih.
+# 
+#     >>> sosed_naj_trpi('petunije so si zaslužile lepši konec')
+#     'cenokišp el el ižulsazis oseji nutep'
+# 
+# Namig: Zapomnite si pozicije presledkov preden obrnete vrstni red črk.
+# =============================================================================
+def sosed_naj_trpi(niz):
+    nov_niz = ''
+    presledki = []
+    # Zapomnimo si mesta presledkov in jih poberemo iz niza
+    for i, znak in enumerate(niz): # iteriraš čez elemente nekega zaporedja (npr. seznama, niza ipd.) in hkrati dobiš tudi indeks vsakega elementa
+        if znak == ' ':
+            presledki.append(i)
+        else:
+            nov_niz += znak
+    # Niz obrnemo
+    nov_niz = nov_niz[::-1]
+    # Ponovno vstavimo presledke (od leve proti desni, da bodo indeksi pravi)
+    for i in presledki:
+        nov_niz = nov_niz[:i] + ' ' + nov_niz[i:]
+
+    return nov_niz
+
+# Ali sva za skupaj?
+#
+# Dolgoletne raziskave partnerskih odnosov kažejo, da je najboljši pokazatelj
+# uspešnosti in dolgotrajnosti zveze število, ki ga izračunamo po spodnjem
+# postopku. Najprej za vsako črko v besedi LOVES preštejemo število njenih
+# pojavitev v imenih obeh partnerjev, s čimer dobimo petmestno število. Nato
+# v tem številu seštejemo po dve sosednji števki in tako dobimo novo število.
+# Ta postopek ponavljamo, dokler nam ne ostaneta le dve števki, ki nam povesta
+# odstotek uspešnosti zveze. Poglejmo si primer za Julijo Primic in Franceta
+# Prešerna. Najprej preštejemo število pojavitev črk LOVES:
+# 
+#            Julija Primic    France Prešeren
+#     L: 1     *
+#     O: 0
+#     V: 0
+#     E: 4                         *   * * *
+#     S: 0
+# 
+# Nato postopoma računamo vsoto dveh sosednjih števk:
+# 
+#     1   0   0   4   0
+#       1   0   4   4
+#         1   4   8
+#           5   12  (kar pišemo kot)
+#         5   1   2
+#           6   3
+# 
+# Možnosti je torej 63%. Nekateri znanstveniki (predvsem v svetu z bolj
+# germansko kulturo) zagovarjajo alternativen pristop, v katerem je treba začeti
+# s črkami v besedi ŠANSE. V tem primeru za naša zaljubljenca po podobnem
+# postopku dobimo 87%.
+# =====================================================================@021487=
+# 1. podnaloga
+# Sestavite funkcijo `razbij_na_stevke(stevilo)`, ki vrne števke danega
+# števila:
+# 
+#     >>> razbij_na_stevke(12382)
+#     [1, 2, 3, 8, 2]
+#     >>> razbij_na_stevke(6)
+#     [6]
+# =============================================================================
+def razbij_na_stevke(stevilo):
+    sez = []
+    for stevka in str(stevilo): #str - pretvori v niz
+        sez.append(int(stevka)) #int - pretvori v število; append - zdaj jih posamezno deljene vpisujemo
+    return sez
+
+
+# =====================================================================@021488=
+# 2. podnaloga
+# Sestavite funkcijo `prestej_crke(geslo, niz)`, ki vrne seznam pojavitev črk
+# niza `geslo` v danem nizu `niz`. Pri tem naj se ne ozira na male ali velike
+# črke (pomagajte si z metodo `upper`):
+# 
+#     >>> prestej_crke('LOVES', 'france')
+#     [0, 0, 0, 1, 0]
+#     >>> prestej_crke('ŠANSE', 'prešeren')
+#     [1, 0, 1, 0, 3]
+# =============================================================================
+def prestej_crke(geslo, niz):
+    sez = []
+    niz = niz.upper() # ker iščemo podobmost velikih črk
+    for znak in geslo.upper(): # za vsak znak iz gesla
+        sez.append(niz.count(znak)) #prešteje ponovitev v nizu in zapiše št. v seznam
+    return sez
+
+
+# =====================================================================@021489=
+# 3. podnaloga
+# Sestavite funkcijo `sestej_stevke(stevke)`, ki vrne seznam števk, ki ga
+# dobimo, ko seštejemo sosednje števke v seznamu `stevke`. Če je vsota dveh
+# sosednjih števk dvomestno število, v vrnjeni seznam dodate dve števki.
+# Na primer:
+# 
+#     >>> sestej_stevke([1, 0, 4, 4])
+#     [1, 4, 8]
+#     >>> sestej_stevke([1, 4, 8])
+#     [5, 1, 2]
+#     >>> sestej_stevke([5, 1, 2])
+#     [6, 3]
+# =============================================================================
+def sestej_stevke(stevke):
+    nove_stevke = []
+    for i in range(1, len(stevke)):
+        nove_stevke.extend(razbij_na_stevke(stevke[i - 1] + stevke[i])) # pretvori število v int
+    return nove_stevke
+
+
+# =====================================================================@021490=
+# 4. podnaloga
+# Sestavite funkcijo `ujemanje(oseba1, oseba2, geslo)`, ki po zgoraj opisanem
+# postopku izračuna odstotek uspešnosti zveze med osebama z imenoma `oseba1`
+# in `oseba2`. Argument `geslo` naj ima privzeto vrednost `'LOVES'`.
+# 
+#     >>> ujemanje('Julija Primic', 'France Prešeren', geslo='LOVES')
+#     63
+#     >>> ujemanje('Julija Primic', 'France Prešeren')
+#     63
+#     >>> ujemanje('Julija Primic', 'France Prešeren', geslo='ŠANSE')
+#     87
+# =============================================================================
+def ujemanje(oseba1, oseba2, geslo='LOVES'): #PRIVZETA VREDNOST: `geslo` naj ima privzeto vrednost `'LOVES'
+    sk_ime = oseba1 + oseba2 # ker sta niza ju lahko seštejemo
+    crke = prestej_crke(geslo, sk_ime) 
+    while len(crke) > 2: # ponavlja dokler dolžina niza ni manjša od 2
+        crke = sestej_stevke(crke) # ista spremenljivka, da loop
+    return (10 * crke[0] + crke [1])
+
+# Permutacije
+#
+# Permutacijo običajno predstavimo s seznamom slik posameznih elementov,
+# npr. [5, 1, 6, 4, 2, 3], lahko pa tudi s seznamom disjunktnih ciklov, npr.
+# [[1, 5, 2], [3, 6], [4]]. Ciklov dolžine 1 (fiksnih točk) običajno ne
+# navajamo, a moramo v tem primeru navesti še velikost permutacije
+# (v tem primeru 6).
+# =====================================================================@021491=
+# 1. podnaloga
+# Sestavite funkcijo `je_permutacija`, ki sprejme seznam in preveri,
+# ali je v njem zapisana permutacija v običajnem zapisu. V seznamu je zapisana
+# permutacija, če se vsak element od $1$ do $n$, kjer je $n$ dolžina
+# permutacije, pojavi natanko enkrat.
+# 
+#     >>> je_permutacija([7, 3, 4, 5, 2, 1])
+#     False
+#     >>> je_permutacija([7, 3, 4, 5, 2, 6, 1])
+#     True
+# =============================================================================
+def je_permutacija (sez):
+    for i in range (len(sez)): # len da števila od 0 do n-1 in po teh gredo, ker naraščajo
+        if sez.count (i + 1) != 1: # i+1 ker moramo ta št. povečati za 1, da jih pregledujemo
+            return False
+    return True
+
+
+# =====================================================================@021492=
+# 2. podnaloga
+# Sestavite funkcijo `je_seznam_ciklov`, ki sprejme seznam seznamov in preveri,
+# ali vsebuje disjunktne cikle neke permutacije. Preveriti je torej treba,
+# ali so vsi elementi pozitivni ter ali se vsak element v stiku vseh ciklov
+# pojavi natanko enkrat.
+# 
+#     >>> je_seznam_ciklov([[8,3,4],[5,7,1]])
+#     True
+#     >>> je_seznam_ciklov([[8,1,4],[5,7,1]])
+#     False
+# =============================================================================
+def je_seznam_ciklov (sez):
+    sk_sez = []
+    for podsez in sez:
+        sk_sez += podsez
+    for i in sk_sez:
+        if sk_sez.count(i) > 1:
+            return False
+        elif i <= 0:
+            return False
+    return True
+
+
+
+# =====================================================================@021493=
+# 3. podnaloga
+# Sestavite funkcijo `urejeni_cikli`, ki seznam ciklov pretvori v nov seznam
+# tako, da je najmanjši element posameznega cikla vedno na začetku cikla,
+# cikli v seznamu pa so urejeni po velikosti prvih elementov. Morebitne prazne
+# cikle in cikle dolžine 1 naj odstrani.
+# 
+#     >>> urejeni_cikli([[7, 3], [4], [5, 2, 1], [8, 2, 14]])
+#     [[1, 5, 2], [3, 7], [2, 14, 8]]
+# =============================================================================
+def urejeni_cikli(cikli):
+    sez = []
+    for cikel in cikli:
+        if len(cikel) > 1: #preveri dolžino
+            najmanjsi = cikel.index(min(cikel)) # poiščem najmanjši element in njegov indeks
+            sez.append(cikel[najmanjsi:] + cikel[:najmanjsi]) # razdeliš na še dva pod in urediš, da se začne z najmanjšo št.
+    sez.sort() # sortira sezname po prvem elementu
+    return sez
+
+#def urejeni_cikli(sez):
+    n_sez= []
+    for podsez in sez:
+        if len(podsez) > 1:
+            najmanjsi= podsez.index(min(podsez))
+            n_sez.append(podsez[najmanjsi:] + podsez[:najmanjsi])
+        n_sez.sort()
+        return n_sez
+
+
+# =====================================================================@021494=
+# 4. podnaloga
+# Sestavite funkcijo `iz_ciklov(cikli, dolzina)`, ki iz seznama ciklov `cikli`
+# sestavi običajen zapis permutacije dolzine `dolzina`. Če parametra `dolzina`
+# ne podamo, ali pa je ta premajhna, naj bo dolžina enaka največjemu elementu,
+# ki se pojavi v ciklih.
+# 
+#     >>> iz_ciklov([[7, 3], [4], [5, 2, 1]])
+#     [5, 1, 7, 4, 2, 6, 3]
+#     >>> iz_ciklov([[7, 3], [4], [5, 2, 1]], 9)
+#     [5, 1, 7, 4, 2, 6, 3, 8, 9]
+# =============================================================================
+def iz_ciklov(cikli, dolzina=0): #Če parametra `dolzina`ne podamo enaka največjemu elementu
+    for cikel in cikli:
+        dolzina = max(dolzina, max(cikel)) # določimo dolžino
+    perm = list(range(1, dolzina + 1))
+    for cikel in cikli:
+        for i in range(1, len(cikel)):
+            perm[cikel[i - 1] - 1] = cikel[i]
+        perm[cikel[-1] - 1] = cikel[0]
+    return perm
+
+
+# =====================================================================@021495=
+# 5. podnaloga
+# Sestavite funkcijo `v_cikle`, ki iz permutacije sestavi njeno predstavitev s
+# cikli.
+# 
+#     >>> v_cikle([5, 1, 7, 4, 2, 6, 3])
+#     [[1, 5, 2], [3, 7]]
+# =============================================================================
+def v_cikle(perm):
+    cikli = []
+    pregledani = []
+    for i in range(1, len(perm) + 1):
+        j = i
+        cikel = []
+        while j not in pregledani:
+            pregledani.append(j)
+            cikel.append(j)
+            j = perm[j - 1]
+        if len(cikel) > 1:
+            cikli.append(cikel)
+    return cikli
+
+
+# =====================================================================@021496=
+# 6. podnaloga
+# Sestavite funkcijo `inverz_perm`, ki sestavi in vrne inverz dane permutacije
+# v običajni predstavitvi.
+# 
+#     >>> inverz_perm([7, 3, 4, 5, 2, 1, 6])
+#     [6, 5, 2, 3, 4, 7, 1]
+# =============================================================================
+def inverz_perm(perm):
+    n = len(perm)
+    inverz = [0] * n
+    for i in range(n):
+        inverz[perm[i] - 1] = i + 1
+    return inverz
+
+
+# =====================================================================@021497=
+# 7. podnaloga
+# Sestavite funkcijo `inverz_cikli`, ki sestavi in vrne inverz dane
+# permutacije, predstavljene s seznamom ciklov. Inverz permutacije dobimo tako,
+# da v cikličnem zapisu obrnemo vse cikle (vsakega posebej).
+# 
+#     >>> inverz_cikli([[7, 3], [4], [5, 2, 1]])
+#     [[1, 2, 5], [3, 7]]
+# =============================================================================
+def urejeni_cikli(cikli):
+    sez = []
+    for cikel in cikli:
+        if len(cikel) > 1: #preveri dolžino
+            najmanjsi = cikel.index(min(cikel)) # poiščem najmanjši element in njegov indeks
+            sez.append(cikel[najmanjsi:] + cikel[:najmanjsi]) # razdeliš na še dva pod in urediš, da se začne z najmanjšo št.
+    sez.sort() # sortira sezname po prvem elementu
+    return sez
+
+def inverz_cikli(cikli):
+    inverz = []
+    for cikel in cikli:
+        inverz.append(cikel[::-1]) # odbnevsak cikel iz ciklov
+    return urejeni_cikli(inverz) # uredi cikle po naraščanju
+
+
+# =====================================================================@021498=
+# 8. podnaloga
+# Sestavite funkcijo `ciklicni_tip(cikli, dolzina)`, ki vrne ciklični tip
+# permutacije dolžine `dolzina`, predstavljene s seznamom ciklov `cikli`.
+# To je nabor, ki ima toliko elementov, kot je dolžina najdaljšega cikla.
+# Prvi element v tem naboru je število ciklov dolžine 1, drugi element je
+# število ciklov dolžine 2, itd. Če parametra `dolzina` ne podamo, ali pa
+# je ta premajhna, naj bo dolžina enaka največjemu elementu, ki se pojavi
+# v ciklih.
+# 
+#     >>> ciklicni_tip([[7, 3], [4], [5, 2, 1]])
+#     (2, 1, 1)
+#     >>> ciklicni_tip([[7, 3], [4], [5, 2, 1]], 9)
+#     (4, 1, 1)
+# =============================================================================
+def ciklicni_tip(cikli, dolzina=0):
+    for cikel in cikli:
+        dolzina = max(dolzina, max(cikel))
+    dolzine = []
+    for cikel in cikli:
+        dolzine.append(len(cikel))
+    najdaljsi_cikel = max(dolzine)
+    tip = []
+    for i in range(1, najdaljsi_cikel + 1):
+        tip.append(dolzine.count(i))
+    tip[0] += dolzina - sum(dolzine)
+    return tuple(tip)
+
+
+# =====================================================================@021499=
+# 9. podnaloga
+# Sestavite funkcijo `red`, ki izračuna in vrne red permutacije podane s cikli.
+# Naj bo $\pi$ permutacija. Red permutacije $\pi$ je najmanjše pozitivno
+# število $k$, pri katerem je $\pi^k$ identiteta.
+# 
+# Namig 1: Red permutacije je najmanjši skupni večkratnik dolžin vseh ciklov.
+# 
+# Namig 2: Za poljubni dve naravni števili `a` in `b` velja, da je
+# `gcd(a, b) * lcm(a, b) == a * b`. (Funkcija `gcd` računa največji
+# skupni delitelj, funkcija `lcm` pa najmanjši skupni večkratnik.)
+# 
+#     >>> red([[7, 3], [4], [5, 2, 1]])
+#     6
+# =============================================================================
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+def red(cikli):
+    r = 1
+    for cikel in cikli:
+        r = lcm(r, len(cikel))
+    return r
+
+
+???%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+SLOVARJI:
+# Ogrevanje na družinskem pikniku
+#
+# Na tradicionalni družinski piknik  vsako leto prinesete sladice. Ker pa so
+# člani razširjene družine zelo izbirčni, si že leta skrbno beležite, katere
+# sladice najraje jedo. Tako imate spravljen slovar, ki vsakemu članu pristavi
+# njegovo najljubšo sladico, npr.
+# 
+#     sladkosnedi= {"mami" : "vanilijev sladoled", "ati" : "puding",
+#                       "babi Minka" : "prekmurska gibanica",
+#                       "stric Franc" : "panacota", "teta Eli" : "magdalence",
+#                       "sestra Katarina" : "jagodna torta"}
+# =====================================================================@021500=
+# 1. podnaloga
+# Sestavite funkcijo `druzinski_clani`, ki sprejme slovar sladkosnedov in vrne
+# seznam družinskih članov.
+# 
+#     >>> druzinski_clani({"mami": "pita", "ati": "torta"})
+#     ['mami', 'ati']
+# =============================================================================
+def druzinski_clani (sladkosnedi):
+    return list(sladkosnedi.keys())
+# =====================================================================@021501=
+# 2. podnaloga
+# Vaša boljša polovica si je izpogajala, da bo na tokratni družinski piknik
+# povabljena tudi njihova družina.
+# 
+# Sestavite funkcijo `zdruzi_sladkosnede(domaci, njihovi)`, ki združi slovarja
+# vaših in njihovih sladkosnedov. Če se kakšno ime pojavi v obeh slovarjih, naj
+# v združenem slovarju nastopa član vaše družine.
+# 
+#     >>> zdruzi_sladkosnede({"mami": "pita", "ati": "torta"},
+#                            {"brat Jan": "cokolada", "mami": "piskoti"})
+#     {'mami': 'pita', 'ati': 'torta', 'brat Jan': 'cokolada'}
+# =============================================================================
+def zdruzi_sladkosnede(domaci, njihovi):
+    skupno = domaci
+    for kljuc in njihovi.keys():
+        if kljuc not in domaci.keys():
+            skupno[kljuc] = njihovi [kljuc]
+    return skupno
+
+def zdruzi_sladkosnede(domaci, njihovi):
+    njihovi.update(domaci)
+    return njihovi
+# =====================================================================@021502=
+# 3. podnaloga
+# Od babice Minke ste dobili seznam gostov, ki so potrdili udeležbo na pikniku. 
+# 
+# Sestavite funkcijo `nakupovalni_seznam`, ki sprejme slovar sladkosnedov in
+# seznam gostov, ki so udeležbo potrdili, ter vrne slovar sladic s
+# pripadajočimi količinami, ki jih je potrebno kupiti. Pazite na to, da ne
+# veste najljubših sladic od vseh povabljenih gostov.
+# 
+#     >>> nakupovalni_seznam({"mami": "pita", "ati": "torta"}, ["mami", "brat"])
+#     {'pita': 1}
+# =============================================================================
+def nakupovalni_seznam(sladkosnedi, gosti):
+    slovar = dict()
+    for gost in gosti:
+        if gost in sladkosnedi.keys():
+            sladica = sladkosnedi[gost]
+            slovar [sladica] = slovar.get(sladica, 0) + 1
+    return slovar
+
+# Kuhamo in pečemo
+#
+# Sestavine, ki jih potrebujemo za nek recept, opišemo s slovarjem, v katerem
+# so ključi sestavine, vrednosti pa količine, ki jih potrebujemo.
+# =====================================================================@021503=
+# 1. podnaloga
+# Sestavite funkcijo `pomnozi`, ki sprejme recept in celoštevilski faktor in
+# sestavi nov recept. Ta naj vsebuje iste sestavine kot podani recept le da so
+# vse količine v njem pomnožene z danim faktorjem.
+# 
+#     >>> pomnozi({'jajca': 4, 'moka': 500}, 2)
+#     {'jajca': 8, 'moka': 1000}
+# =============================================================================
+def pomnozi (recept, stevilo):
+    nov_recept = recept
+    for sestavina in recept:
+        nov_recept [sestavina] = nov_recept.get(sestavina, 0) * stevilo
+    return nov_recept
+# =====================================================================@021504=
+# 2. podnaloga
+# Sestavite funkcijo `ali_imamo_sestavine(recept, shramba)`, ki preveri, ali
+# imamo v shrambi dovolj sestavin za dani recept. Sestavine, ki jih imamo v
+# shrambi, so predstavljene s slovarjem na enak način kot sestavine v receptu.
+# 
+#     >>> ali_imamo_sestavine({'jajca': 3, 'moka': 500}, {'moka': 1000, 'jajca': 6, 'sladkor': 1000})
+#     True
+#     >>> ali_imamo_sestavine({'jajca': 3, 'moka': 500}, {'moka': 1000, 'sladkor': 1000})
+#     False
+# =============================================================================
+def ali_imamo_sestavine(recept, shramba):
+    for sestavina in recept:
+        if sestavina in shramba.keys():
+                if recept.get(sestavina, 0) > shramba.get(sestavina, 0):
+                    return False
+        else:
+            return False
+    return True
+
+
+
+def ali_imamo_sestavine(recept, shramba):
+    for sestavina in recept:
+        if sestavina in shramba.keys():
+            if recept.get(sestavina, 0) < shramba.get(sestavina, 0):
+                continue
+        return False
+    return True
+# =====================================================================@021505=
+# 3. podnaloga
+# Sestavite funkcijo `kaj_moramo_se_kupiti(recept, shramba)`, ki vrne slovar
+# sestavin s pripadajočimi količinami, ki jih moramo še dokupiti, da bomo lahko
+# skuhali jed po danem receptu.
+# 
+#     >>> kaj_moramo_se_kupiti({'jajca': 3, 'moka': 500}, {'moka': 1000, 'jajca': 6, 'sladkor': 1000})
+#     {}
+#     >>> kaj_moramo_se_kupiti({'jajca': 3, 'moka': 500}, {'moka': 1000, 'sladkor': 1000})
+#     {'jajca': 3}
+#     >>> kaj_moramo_se_kupiti({'jajca': 3, 'moka': 500}, {'moka': 100})
+#     {'jajca': 3, 'moka': 400}
+# =============================================================================
+def kaj_moramo_se_kupiti(recept, shramba):
+    nakup = dict()
+    for sestavina, kolicina in recept.items():
+        if shramba.get(sestavina, 0) < kolicina: # ni treba še nekrat preverjati ali je sesetavina sploh v shrambi,saj pri .get privzamemo vrednost 0, če te ni
+                nakup[sestavina] = kolicina - shramba.get(sestavina, 0)
+    return nakup
+
+# Šifriranje
+#
+# Substitucijska šifra je enostaven način šifriranja, pri katerem vsako črko iz
+# dane abecede zamenjamo z neko drugo črko. Tako šifro predstavimo s slovarjem,
+# ki ima za ključe vse črke iz abecede, pripadajoče vrednosti pa so črke, s
+# katerimi jih zašifriramo.
+# 
+# Tako slovar `{'A': 'B', 'C': 'C', 'B': 'D', 'D': 'A'}` pomeni, da se `A`
+# zašifrira v `B`, `B` v `D`, `D` v `A`, `C` pa se ne spremeni.
+# 
+# V vseh testnih primerih bomo uporabljali naslednjo substitucijsko šifro:
+# 
+#     nasa_sifra = {'Č': 'K', 'A': 'O', 'C': 'Z', 'B': 'M', 'E': 'V',
+#                   'D': 'C', 'G': 'P', 'F': 'E', 'I': 'B', 'H': 'F',
+#                   'K': 'I', 'J': 'A', 'M': 'U', 'L': 'H', 'O': 'R',
+#                   'N': 'Š', 'P': 'J', 'S': 'T', 'R': 'L', 'U': 'G',
+#                   'T': 'Č', 'V': 'N', 'Z': 'Ž', 'Š': 'S', 'Ž': 'D'}
+# =====================================================================@021506=
+# 1. podnaloga
+# Sestavite funkcijo `sifriraj`, ki sprejme šifro in besedo in vrne rezultat
+# šifriranja. Predpostavite lahko, da vse črke v besedi nastopajo v šifri.
+# 
+#     >>> sifriraj(nasa_sifra, 'MATEMATIK')
+#     'UOČVUOČBI'
+# =============================================================================
+def sifriraj(nasa_sifra, beseda):
+    nova_beseda = []
+    for i in beseda:
+        nova_crka = nasa_sifra.get(i, 0)
+        nova_beseda += nova_crka
+    return ''.join(nova_beseda)
+
+# =====================================================================@021507=
+# 2. podnaloga
+# Sestavite funkcijo `ali_je_sifra`, ki ugotovi, ali dani slovar predstavlja
+# šifro, torej ali je bijekcija črk na neki abecedi.
+# 
+#     >>> ali_je_sifra({'A': 'B', 'B': 'A'})
+#     True
+#     >>> ali_je_sifra({'A': 'B', 'B': 'C'})
+#     False
+# =============================================================================
+def ali_je_sifra(slovar):
+    # Pogledamo, če je množica ključev slovarja enaka množici vrednosti. Ker so
+    # ključi v slovarju enolični, je velikost množice ključev enaka kar številu
+    # črk v abecedi. Če sta torej množici ključev in vrednosti enaki, je slovar
+    # surjektiven in s tem tudi injektiven. (oba morata imeti enake elemente)
+    return set(slovar.keys()) == set(slovar.values())
+
+
+#def ali_je_sifra(slovar):
+    kljuci= list(slovar.keys())
+    crke = list(slovar.values())
+    for i in kljuci:
+        if i in crke:
+            continue
+    return True
+    
+
+
+    for kljuc in slovar.keys():
+        for crka in slovar.values():
+            if crka == kljuc:
+                continue
+        return False
+    return True        
+    
+    return len(slovar.values()) == len(set(slovar.values()))
+
+
+
+# =====================================================================@021508=
+# 3. podnaloga
+# Sestavite funkcijo `inverz`, ki vrne inverz dane šifre, če ta obstaja. V
+# nasprotnem primeru funkcija vrne `None`.
+# 
+#     >>> inverz({'A': 'B', 'B': 'C', 'C': 'A'})
+#     {'A': 'C', 'B': 'A', 'C': 'B'}
+# =============================================================================
+def inverz(sifra):
+    if not ali_je_sifra(sifra):
+        return None
+    inv = {} 
+    for k, v in sifra.items(): # obravnavamo za 2 elementa (par) takoj, lazje menjati !
+        inv[v] = k
+    return inv
+
+#def inverz(sifra):
+    nova_sifra = dict()
+    kljuci= list(sifra.keys())
+    crke = list(sifra.values())  
+    for i in range(0, len(crke)):
+        nova_sifra[crke[i]] = kljuci[i]
+    return nova_sifra
+
+
+
+# =====================================================================@021509=
+# 4. podnaloga
+# Sestavite funkcijo `odsifriraj`, ki sprejme šifro in zašifrirano besedilo,
+# vrne pa odšifrirano besedilo. Če slovar ni bijekcija (in se torej besedilo ne
+# da nujno odšifrirati), naj funkcija vrne `None`.
+# 
+#     >>> odsifriraj(nasa_sifra, 'MVCOI')
+#     'BEDAK'
+# =============================================================================
+def odsifriraj(nasa_sifra, beseda):
+    if len(nasa_sifra.values()) != len(set(nasa_sifra.values())): # Preverimo, ali je šifra bijekcija (vse vrednosti morajo biti edinstvene)
+        return None #primerjaš lahko samo set, ker gre za množico
+
+    inverzna_sifra = {vrednost: kljuc for kljuc, vrednost in nasa_sifra.items()}     # Zgradimo inverz šifre V nov slovar damo: vrednost kot ključ; ključ kot vrednost. Torej zamenjamo vloge ključa in vrednosti.
+
+    nova_beseda = []     # Odšifriraj besedo
+    for i in beseda:
+        nova_crka = inverzna_sifra.get(i, None)
+        if nova_crka is None:
+            return None  # Če se črka ne najde v inverzni šifri, vrnemo None
+        nova_beseda.append(nova_crka)
+    return ''.join(nova_beseda)
+
+
+#def odsifriraj(sifra, beseda): (ali ždružena funkcija)
+    inv = inverz(sifra)
+    if inv:
+        return sifriraj(inv, beseda)
+    else:
+        return
+
+
+# Permutacije
+#
+# V slovarju imamo shranjeno permutacijo naravnih števil od $1$ do $n$.
+# Permutacijo, ki slika $1$ v $3$, $3$ v $1$, število $2$ pa pusti pri miru,
+# torej zapišemo s slovarjem `{1: 3, 2: 2, 3: 1}`.
+# =====================================================================@021510=
+# 1. podnaloga
+# Sestavite funkcijo `slika(permutacija, x)`, ki vrne sliko števila `x`
+# s podano permutacijo.
+# 
+#     >>> slika({1: 3, 2: 4, 3: 2, 4: 1}, 1)
+#     3
+# =============================================================================
+def slika(permutacija, x):
+    return permutacija.get(x, None)
+
+
+#def slika(permutacija, x):
+    for i in permutacija.keys():
+        if i == x:
+            return permutacija.get(i, None)
+
+
+
+# =====================================================================@021511=
+# 2. podnaloga
+# Sestavite funkcijo `slike(permutacija, x, n)`, ki vrne zaporedje slik, ki ga
+# dobimo, če začnemo s številom `x` in na njem `n`-krat uporabimo permutacijo.
+# 
+#     >>> slike({1: 3, 2: 4, 3: 2, 4: 1}, 1, 2)
+#     [1, 3, 2]
+# =============================================================================
+def slike(permutacija, x, n):
+    rezultati = [x]  # Seznam za shranjevanje rezultatov, začnemo s številom x
+    for ponovitev in range(n):
+        x = permutacija[x]  # Uporabimo permutacijo na trenutni vrednosti x
+        rezultati.append(x)  # Dodamo rezultat v seznam
+    return rezultati    
+
+
+
+# =====================================================================@021512=
+# 3. podnaloga
+# Sestavite funkcijo `cikel(permutacija, x)`, ki vrne celoten cikel, ki se
+# začne s številom `x`.
+# 
+#     >>> cikel({1: 3, 2: 2, 3: 1}, 1)
+#     [1, 3]
+#     >>> cikel({1: 3, 2: 2, 3: 1}, 2)
+#     [2]
+# =============================================================================
+def cikel(permutacija, x):
+    rezultati = [x]
+    stevilo = permutacija[x]
+    while stevilo != x:
+        rezultati.append(stevilo)
+        stevilo = permutacija[stevilo]
+    return rezultati 
+
+    while True:
+        stevilo = permutacija[stevilo]
+        if stevilo == x:  # Ko pridemo nazaj do začetnega števila, končamo cikel
+            break
+        rezultati.append(stevilo)
+    
+    return rezultati
+
+
+
+# =====================================================================@021513=
+# 4. podnaloga
+# Sestavite funkcijo `cikli`, ki vrne seznam disjunktnih ciklov dane
+# permutacije. Vsak cikel naj se začne z najmanjšim številom v ciklu, cikli pa
+# naj bodo urejeni po začetnem številu.
+# 
+#     >>> cikli({1: 3, 2: 2, 3: 1})
+#     [[1, 3], [2]]
+# =============================================================================
+def cikli(permutacija):
+    # V seznam cikli si shranjujemo do sedaj izračunane cikle, v množico
+    # ugotovljena pa vsa tista števila, za katera smo že ugotovili, kateremu
+    # ciklu pripadajo.
+    cikli = []
+    ugotovljena = set()
+    # Nato gremo zaporedoma čez vsa števila od 1 do n. Če za neko število še
+    # nismo ugotovili, kam spada, je najmanjše v svojem ciklu. Zato izračunamo
+    # njegov cikel, ga dodamo k ciklom, vsa števila iz cikla pa dodamo med
+    # ugotovljena.
+    for i in range(1, len(permutacija) + 1):
+        if i not in ugotovljena:
+            c = cikel(permutacija, i)
+            cikli.append(c)
+            ugotovljena.update(c)
+    return cikli
+
+
+# =====================================================================@021514=
+# 5. podnaloga
+# Sestavite funkcijo `je_permutacija`, ki vrne `True`, če dani slovar
+# predstavlja permutacijo, in `False` sicer.
+# 
+#     >>> je_permutacija({1: 2, 2: 1})
+#     True
+#     >>> je_permutacija({1: 3, 2: 4})
+#     False
+# =============================================================================
+def je_permutacija(slovar):
+    domena = set(slovar.keys())
+    slika = set(slovar.values())
+    return domena == slika == set(range(1, len(slovar) + 1)) #preveri, če se dolžina IN vsi vmesni elementi notri
+
+# Ljubezen nam je vsem v pogubo
+#
+# Socialno omrežje zaljubljenosti podamo s slovarjem, ki ime osebe preslika v
+# množico vseh, v katere je oseba zaljubljena (ena oseba je lahko zaljubljena v
+# več oseb). Na primer, slovar
+# 
+#     {
+#         'Ana': {'Bine', 'Cene'},
+#         'Bine': set(),
+#         'Cene': {'Bine'},
+#         'Davorka': {'Davorka'},
+#         'Eva': {'Bine'}
+#     }
+# 
+# nam pove, da je Ana zaljubljena v Bineta in Ceneta, Bine ni zaljubljen, Cene
+# ljubi Bineta, Davorka samo sebe in Eva Bineta.
+# =====================================================================@021515=
+# 1. podnaloga
+# Sestavite funkcijo `narcisoidi`, ki sprejme slovar zaljubljenih in vrne
+# _množico_ tistih, ki ljubijo same sebe.
+# =============================================================================
+def narcisoidi(slovar_zaljubljenih):
+    narcisi = []
+    for oseba in slovar_zaljubljenih.keys():
+        if oseba in slovar_zaljubljenih.get(oseba, None):
+            narcisi.append(oseba)
+        else:
+            continue
+    return narcisi
+
+
+
+# =====================================================================@021516=
+# 2. podnaloga
+# Sestavite funkcijo `ljubljeni`, ki sprejme slovar zaljubljenih in vrne
+# _množico_ tistih, ki so ljubljeni.
+# =============================================================================
+def ljubljeni(slovar_zaljubljenih):
+    ljubljeni = set() 
+    for oseba in slovar_zaljubljenih.values(): 
+        ljubljeni.update(oseba) 
+    return ljubljeni
+
+# =====================================================================@021517=
+# 3. podnaloga
+# Sestavite funkcijo `pari`, ki sprejme slovar zaljubljenih in vrne _množico_
+# vseh parov, ki so srečno zaljubljeni. Vsak par naj se pojavi samo enkrat in
+# sicer tako, da sta zaljubljenca našteta po abecedi. Na primer, če sta Ana in
+# Bine zaljubljena, dodamo par `('Ana', 'Bine')`.
+# =============================================================================
+def pari(slovar_zaljubljenih):
+    srečni_pari = set()
+    for oseba, zaljubljeni_v in slovar_zaljubljenih.items():
+        for partner in zaljubljeni_v:   # Preverimo, če je tudi partner zaljubljen v to osebo
+            if oseba in slovar_zaljubljenih.get(partner, None):# Dodamo par v abecednem vrstnem redu
+                srečni_pari.add(tuple(sorted([oseba, partner]))) # tuple naredi oklepaj
+    return srečni_pari
+
+
+
+# =====================================================================@021518=
+# 4. podnaloga
+# Sestavite funkcijo `ustrezljivi(oseba, zaljubljeni)`, ki sprejme ime osebe
+# ter slovar zaljubljenih, vrne pa _množico_ vseh ljudi, ki so do dane osebe še
+# posebej ustrežljivi. Posebej ustrežljivi so seveda zato, ker so bodisi
+# zaljubljeni v dano osebo, bodisi so zaljubljeni v osebo, ki je posebej
+# ustrežljiva do nje, in tako naprej.
+# 
+# Na primer, če imamo slovar
+# 
+#     {
+#         'Ana': {'Bine', 'Cene'},
+#         'Bine': {'Ana'},
+#         'Cene': {'Bine'},
+#         'Davorka': {'Davorka'},
+#         'Eva': {'Bine'}
+#     }
+# 
+# so do Ceneta posebej ustrežljivi Ana (ki je zaljubljena vanj), Bine (ki je
+# zaljubljen v Ano) ter Cene in Eva (ki sta zaljubljena v Bineta).
+# =============================================================================
+# Brez izpeljanih seznamov
+def ustrezljivi(oseba, zaljubljeni):
+    ustrez = set()
+    kandidati = set()
+    for zaljubljenec in zaljubljeni:
+        if oseba in zaljubljeni[zaljubljenec]:
+            kandidati.add(zaljubljenec) # vse, ki so zaljubljeni v to osebo zapiše
+    while kandidati: # dokler kandidati niso prazni
+        kandidat = kandidati.pop() # zadnjo osebo vzamemo za kandidata
+        ustrez.add(kandidat)
+        for zaljubljenec in zaljubljeni:
+            if kandidat in zaljubljeni[zaljubljenec] and zaljubljenec not in ustrez: # preverimo, kdo že ustreza
+                kandidati.add(zaljubljenec) # dodamo ga k kandidato, da bo rekurzija
+    return ustrez
+
+
+# Ista zadeva z izpeljanimi seznami
+def ustrezljivi(oseba, zaljubljeni):
+    # seznam, v katerega nabiramo ustrežljive osebe
+    ustrezljivi = set()
+    # najprej dodamo tiste, ki ljubijo prvo osebo
+    dodani = {o for o in zaljubljeni if oseba in zaljubljeni[o]}
+    # dokler smo koga dodali, dodajamo ustrežljive
+    while dodani:
+        ustrezljivi.update(dodani)
+        # sedaj pa dodajamo tiste, ki ljubijo nazadnje dodane osebe
+        dodani = {o for o in zaljubljeni for dodan in dodani
+                  if dodan in zaljubljeni[o] and o not in ustrezljivi}
+    return ustrezljivi
+
+
 
